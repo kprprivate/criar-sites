@@ -19,9 +19,36 @@ A skill está em português do Brasil.
 
 ## Instalar
 
+### Jeito mais fácil: um comando
+
+Precisa só do [Node](https://nodejs.org) instalado. No terminal:
+
+```bash
+npx skills add kprprivate/criar-sites -g
+```
+
+Ele baixa a skill e pergunta em quais agentes instalar (Claude Code, Codex e outros que ele encontrar no computador). O `-g` instala para todos os projetos; sem ele, instala só na pasta atual.
+
+Depois, abra uma sessão nova do agente.
+
+Para atualizar quando eu publicar novidades, e para remover:
+
+```bash
+npx skills update
+npx skills remove criar-sites
+```
+
+### Mais fácil ainda: pedir ao próprio agente
+
+Cole isto numa conversa com o Claude Code ou o Codex:
+
+> Instale a skill criar-sites de https://github.com/kprprivate/criar-sites para todos os meus projetos.
+
+### Instalar à mão
+
 Uma skill é só uma pasta com um `SKILL.md` dentro. Basta colocá-la na pasta de skills do agente. O `SKILL.md` precisa ficar **direto** dentro da pasta `criar-sites`, sem uma pasta extra no meio.
 
-### Claude Code
+#### Claude Code
 
 Para valer em todos os projetos:
 
@@ -37,7 +64,7 @@ git clone https://github.com/kprprivate/criar-sites "$HOME\.claude\skills\criar-
 
 Para valer só em um projeto, clone em `.claude/skills/criar-sites` dentro da pasta dele.
 
-### Codex e outros agentes
+#### Codex e outros agentes
 
 Clone na pasta de skills da ferramenta:
 
@@ -47,7 +74,7 @@ git clone https://github.com/kprprivate/criar-sites ~/.codex/skills/criar-sites
 git clone https://github.com/kprprivate/criar-sites ~/.agents/skills/criar-sites
 ```
 
-### Usar em mais de um agente sem duplicar
+#### Usar em mais de um agente sem duplicar
 
 Clone uma vez e aponte as outras pastas para ela com um link simbólico:
 
@@ -61,7 +88,7 @@ No Windows (PowerShell, pode exigir o modo desenvolvedor ou um terminal como adm
 New-Item -ItemType SymbolicLink -Path "$HOME\.claude\skills\criar-sites" -Target "$HOME\.agents\skills\criar-sites"
 ```
 
-### Sem Git
+#### Sem Git
 
 Baixe o zip em **Code → Download ZIP** no GitHub, descompacte e mova a pasta para o lugar certo, renomeando-a para `criar-sites`.
 
@@ -75,8 +102,16 @@ O agente deve começar perguntando pela marca e investigando o nicho, e não sai
 
 ## Atualizar
 
+Se instalou com o comando `npx skills add`:
+
 ```bash
-cd ~/.claude/skills/criar-sites   # ou a pasta onde você instalou
+npx skills update
+```
+
+Se instalou à mão com `git clone`:
+
+```bash
+cd ~/.claude/skills/criar-sites   # ou a pasta onde você clonou
 git pull
 ```
 
