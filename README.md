@@ -19,7 +19,25 @@ A skill está em português do Brasil.
 
 ## Instalar
 
-### Jeito mais fácil: um comando
+### Jeito mais fácil: colar um comando (sem instalar nada)
+
+Não precisa de Git nem de Node. O comando baixa a skill do GitHub e coloca nas pastas do Claude Code e do Codex. Rodar de novo atualiza.
+
+**Windows** (PowerShell):
+
+```powershell
+irm https://raw.githubusercontent.com/kprprivate/criar-sites/main/install.ps1 | iex
+```
+
+**Mac ou Linux** (Terminal):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/kprprivate/criar-sites/main/install.sh | sh
+```
+
+Depois, abra uma sessão nova do agente. Os scripts são `install.ps1` e `install.sh`, aqui no repositório, com poucas linhas: dá para ler antes de rodar.
+
+### Se você tem o Node: `npx skills`
 
 Precisa só do [Node](https://nodejs.org) instalado. No terminal:
 
