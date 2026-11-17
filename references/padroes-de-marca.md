@@ -79,6 +79,8 @@ Cards de lado, um sol que anda, etapas que acendem.
 - **A seção usa `overflow: clip`, não `hidden`:** o `hidden` prende o sticky dentro dela.
 - **Hover:** o modo vale para toda tela estreita, inclusive janela de computador com mouse. Ali, desligar qualquer hover que mude o estado, senão o mouse parado em cima trava a rolagem conduzida.
 - **Com movimento reduzido ou sem JS:** volta o carrossel de deslizar.
+- **Altura pelo conteúdo:** de 70 a 100% da altura da tela por estado que se lê, e cada estado fica parado em parte do trecho (a troca acontece no miolo). O primeiro quadro nunca é vazio: cena que começa com tudo a zero vira uma tela inteira em branco, e no celular isso já apareceu como tela preta. Um indicador mostra que há fim ([medidas](react-bits-templates.md#rolagem)).
+- **Lista empilhada primeiro:** a versão sem prender se escreve antes e vale no celular baixo, sem JS e com movimento reduzido; a cena entra por cima, numa condição de largura e altura.
 
 ### Listas de lado (carrossel) sem barra
 
@@ -182,6 +184,43 @@ O usuário pede seção que cabe numa tela no computador, abertura inclusive. Ab
 ### Fonte variável com eixo próprio
 
 Eixos além do peso (`opsz`, `SOFT`, `WONK`, `GRAD`) vão em `font-variation-settings`, e o atalho `font:` zera essa propriedade em todo elemento onde aparece. O sintoma é a letra "normal" onde se escolheu a variação (caso: a forma macia de uma fonte sumia nos títulos e o usuário notou). Com a variação escolhida para o site inteiro, aplicar em todos os elementos, `*, *::before, *::after`, com `!important`. Fixar o eixo óptico (`opsz`) quando a variação escolhida só existe no tamanho grande. Conferir com `getComputedStyle(el).fontVariationSettings` num título, num botão e num rótulo.
+
+### Fonte carregada que não aparece
+
+Sintoma: o site sai na fonte do sistema (Segoe UI no Windows, San Francisco no Mac) com a fonte da marca baixada e pré-carregada; o contraste entre duas famílias some e ninguém nota no código. Medido em 11 de 18 templates profissionais ([caso](react-bits-templates.md#defeitos-que-os-próprios-templates-têm)).
+
+- **Causa:** a variável CSS da fonte é criada num elemento (o `<body>`) e o token que a usa é resolvido acima dele (o `:root`), onde ela ainda não existe. O `var()` fica inválido e cai na pilha padrão. Acontece com qualquer token que referencia variável definida mais abaixo.
+- **Como fazer:** variável e token no mesmo elemento, ou a variável no `<html>`. Com `next/font` e Tailwind v4, a classe da variável vai no `<html>`. Serifa "do sistema" (`ui-serif`) não é escolha de letra: vira Georgia numa máquina e outra coisa na vizinha.
+- **Conferir:** a família calculada (`getComputedStyle(el).fontFamily`) de um título, um parágrafo e um botão começa pela fonte da marca, e ela está entre as carregadas (`document.fonts`). Lista vazia com fonte declarada é o defeito ([comando](qualidade.md#conferir-à-mão-ainda-sem-detector)).
+
+### Conteúdo que nasce invisível
+
+Sintoma: com o JS lento ou quebrado, título e seções não aparecem; rolando rápido, telas inteiras vazias; captura e robô de busca veem a página pela metade. Medido: de 22 a 92 elementos com `opacity: 0` no HTML de nove templates (em dois, o h1), e 4 de 13 quadros totalmente pretos numa rolagem.
+
+- **Causa:** o estado inicial da animação de entrada está no HTML ou no CSS que vale antes do JS.
+- **Como fazer:** o conteúdo existe visível; quem esconde é o JS, na hora em que vai animar. O kit já faz assim (`src/js/revela.js` põe o atributo que esconde). Esconder por CSS antes do JS só com a `animation` de segurança que mostra sozinha ([título que chega borrado](padrao-visual.md#10-receitas-de-técnica)). O título principal se lê no primeiro quadro. Bloco alto entra por deslocamento ou a partir de opacidade parcial, com margem de disparo folgada.
+- **Contador:** o valor final vai no HTML e a contagem anima só a camada visual, escondida do leitor de tela. Contador que nasce em zero é zero para quem não roda JS, e captura no meio da contagem mostra número errado.
+- **Conferir:** com o JS desligado, nenhum texto de `main` tem opacidade zero ou `visibility: hidden`; e uma rolagem rápida capturada não tem quadro vazio.
+
+### Texto animado por letra ou palavra
+
+Sintoma: a linha quebra no meio da palavra (termina em "drea", recomeça em "m"), no computador e pior no celular. Medido em dois templates, num título e num manifesto.
+
+- **Causa:** cada letra é um bloco em linha independente, e o navegador pode quebrar entre quaisquer duas.
+- **Como fazer:** um invólucro por palavra (`display: inline-block; white-space: nowrap`) com as letras dentro. A frase inteira fica num texto só para leitor de tela, e os pedaços animados levam `aria-hidden`. Preferir revelar por palavra ou por linha mascarada.
+- **Título nunca corta nem cola:** nada de `nowrap` com reticências em título, e nada de quebra de linha escondida no celular sem um espaço antes (as palavras grudam). `text-wrap: balance` e tamanho em `clamp()`.
+- **Conferir:** ler cada título e cada texto animado em 360 e 390 px, depois da animação.
+
+### Canvas e WebGL
+
+Fundo animado, shader, cena 3D, campo de partículas. Três defeitos medidos em templates profissionais: o site inteiro cai sem WebGL, o efeito segue rodando com movimento reduzido, e o título fica ilegível sobre o efeito (contraste estimado de 1,5 a 2,2:1).
+
+- **Reserva antes do canvas:** o contêiner já tem a cor ou um gradiente CSS parecido com o efeito parado. O canvas só é anexado depois que o contexto foi criado e o shader compilou, e a falha é capturada: nunca derruba a página.
+- **Zona do efeito e zona do texto:** o efeito ocupa uma área e o título, outra, sobre base chapada ou véu. A fronteira é uma variável CSS por ponto de quebra, que o canvas lê. Efeito de cursor não ouve toque e não passa por cima do título.
+- **Cores dos tokens:** o canvas lê as cores do CSS (`getComputedStyle`) e relê quando o tema muda. Nenhuma cor fixa no shader.
+- **Ciclo de vida:** começa perto da tela, pausa fora dela e com a aba oculta, limita o salto de tempo, tem teto de quadros e de densidade (até 2), desenha só quando algo mudou e libera o contexto ao sair. Efeito desfocado roda de 30 a 50% da resolução.
+- **Movimento reduzido:** um quadro escolhido à mão, ou um layout alternativo parado. O reset de CSS não alcança animação em JS: cada laço consulta a preferência e a pausa do site.
+- **Conferir:** abrir com o WebGL desligado, com movimento reduzido e no toque; medir o contraste do título no ponto mais claro do efeito, nos dois temas ([como](qualidade.md#conferir-à-mão-ainda-sem-detector)). Método e medidas: [react-bits-templates.md](react-bits-templates.md#canvas-e-shader).
 
 ### Cartão que vira (frente e verso)
 
@@ -385,6 +424,7 @@ O kit já faz boa parte disso: `npm run testa` (páginas), `npm run testa:estado
 - **No roteiro de capturas:**
   - declarar `prefers-reduced-motion`;
   - pedir quadros depois de rolar por script (o headless só pinta quando alguém pede um quadro).
+- **O que os testes ainda não medem** (fonte aplicada, conteúdo invisível sem JS, página sem WebGL, movimento reduzido de verdade, palavra partida, números iguais, cartão com link): [qualidade.md](qualidade.md#conferir-à-mão-ainda-sem-detector).
 - **Modo de desenvolvimento com CSS injetado por JS:** o estado inicial pode diferir do build. Preferir regras que leem a geometria atual (o card mais perto do meio) a regras que dependem da ordem dos eventos.
 
 ## Prévia publicada

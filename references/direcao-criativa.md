@@ -46,7 +46,7 @@ Antes de acrescentar uma seção, dizer qual pergunta, tarefa ou objeção ela r
 
 - Tornar títulos específicos e textos de apoio complementares.
 - Explicar características por meio de consequências compreensíveis, sem inventar benefícios.
-- Usar números, avaliações, clientes e resultados somente quando houver fonte válida.
+- Usar números, avaliações, clientes e resultados somente quando houver fonte válida. Cada número mora num lugar só (um arquivo de dados) e todas as seções leem dali: o mesmo dado com valores diferentes na página destrói a prova. O valor final vai no HTML; a contagem animada é enfeite.
 - Distinguir conteúdo confirmado, hipótese editorial e informação pendente.
 - Ajustar a quantidade de informação à decisão; retirar repetição, não detalhes necessários.
 - Escrever rótulos, instruções, mensagens de erro e confirmação junto com o fluxo.
@@ -92,6 +92,7 @@ Para cada efeito, responder: **o que comunica, quando começa, quando termina e 
 - Preservar controle e orientação quando a rolagem participa da narrativa.
 - Verificar o custo em contexto, com as outras mídias e interações presentes.
 - Reduzir ou retirar o efeito quando prejudicar leitura, resposta ou conclusão da tarefa.
+- Preferir o efeito que mostra o produto ou um objeto do negócio ao efeito de fundo, e uma ideia de efeito em várias doses a vários efeitos ([método](react-bits-templates.md#identidade)).
 
 Não transformar conteúdo preso, WebGL, vídeo automático ou efeitos de cursor em assinatura obrigatória. Não reaproveitar correções específicas de navegador sem reproduzir e compreender o problema atual.
 
@@ -120,6 +121,7 @@ Usar por padrão, salvo motivo do projeto:
   - parar com movimento reduzido e fora da tela.
 - **Sem trava de scroll por seção:**
   - trechos presos, quando houver, devem ser curtos;
+  - prender só quando há uma mudança de estado a mostrar (antes e depois, montagem, pedido que vira resultado), nunca para uma frase de efeito; altura, repouso e reservas em [react-bits-templates.md](react-bits-templates.md#rolagem);
   - com `position: sticky` e rolagem nativa, são aceitos (seção conduzida, footer que sobe);
   - testar no celular a sensação de "site travado".
 - **Técnicas testadas e o que o usuário pede em todo site:** [padroes-de-marca.md](padroes-de-marca.md).

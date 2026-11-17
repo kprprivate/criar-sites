@@ -6,6 +6,7 @@ Use antes de expandir a amostra e antes da entrega. Avalie a versão realmente o
 
 - [Aplicação e estados](#aplicação-e-estados)
 - [O que cada teste prova](#o-que-cada-teste-prova)
+- [Conferir à mão (ainda sem detector)](#conferir-à-mão-ainda-sem-detector)
 - [Olhar de perto](#olhar-de-perto)
 - [Revisão independente](#revisão-independente)
 - [Critérios](#critérios)
@@ -40,6 +41,25 @@ Não atribua nota arbitrária nem use a quantidade de itens concluídos como cer
 Medir no alvo certo: em emulação de celular, `innerWidth` cresce com o conteúdo, e `scrollWidth - innerWidth` sempre dá zero. Um relatório de "sem estouro" feito assim não prova nada; corrigir às claras se isso já foi dito.
 
 Testes em muitas janelas demoram: rodar em segundo plano e seguir trabalhando. Com detector novo, primeiro confirmar que ele acusa um defeito conhecido; depois, que não acusa uma tela boa.
+
+## Conferir à mão (ainda sem detector)
+
+Defeitos medidos em templates profissionais que passam por todos os testes do kit ([casos](react-bits-templates.md#defeitos-que-os-próprios-templates-têm)). Rodar antes de mostrar o primeiro bloco e de novo antes de publicar. Os trechos entram em `j.ev(...)` (`tools/olhar.mjs`) ou no console.
+
+| O que | Como medir | Reprova quando |
+|---|---|---|
+| Fonte realmente aplicada | `["h1","h2","p","button"].map(s => getComputedStyle(document.querySelector(s)).fontFamily)` e `[...document.fonts].filter(f => f.status === "loaded").map(f => f.family)`, depois de `document.fonts.ready` | A primeira família calculada não é a da marca, ou a fonte declarada não está entre as carregadas |
+| Conteúdo invisível sem JS | Desligar o JS (`j.cmd("Emulation.setScriptExecutionDisabled", { value: true })`), abrir a página e listar: `[...document.querySelectorAll("main *")].filter(e => e.innerText?.trim() && !e.children.length && (getComputedStyle(e).opacity === "0" \|\| getComputedStyle(e).visibility === "hidden"))`. No HTML de um site em React: contar `opacity:0` na resposta do servidor | Sobra qualquer texto, e sempre que for o h1 |
+| Tela vazia ao rolar | Rolar de uma tela em uma tela, capturando 300 ms depois de cada passo | Algum quadro sem conteúdo (seção esperando o gatilho, cena presa que começa a zero) |
+| Página sem WebGL | Antes de abrir, `Page.addScriptToEvaluateOnNewDocument` trocando `HTMLCanvasElement.prototype.getContext` por uma função que devolve `null` para `webgl` e `webgl2`; capturar | Erro no console, tela em branco, ou a área do efeito sem cor de reserva |
+| Movimento reduzido de verdade | Capturar a mesma tela com a preferência ligada e desligada, em dois instantes | Com a preferência ligada, as duas capturas diferem (algo ainda se move) ou uma cena presa continua presa |
+| Palavra partida e título cortado | Em 360 e 390 px, depois das animações, ler cada título; procurar letra em `inline-block` fora de um invólucro `nowrap`, e `text-overflow: ellipsis` em `h1, h2, h3` | Linha que termina no meio da palavra, reticências em título, duas palavras coladas |
+| Título sobre efeito ou foto | Contraste do texto contra o ponto mais claro (e o mais escuro) do fundo por trás, nos dois temas; o acento usado como texto, também | Abaixo de 4,5:1 (3:1 em texto grande) |
+| Números iguais em toda a página | Listar todo número de prova da página, lado a lado, com a fonte de cada um | O mesmo dado com dois valores; número sem dono; contador com zero no HTML |
+| Cartão que leva a algum lugar | `[...document.querySelectorAll("main *")].filter(e => getComputedStyle(e).cursor === "pointer" && !e.closest("a[href], button, label, summary, [role]"))` | Elemento com cara de clique sem link nem botão; trabalho sem endereço próprio |
+| Rolagem no documento | `document.documentElement.scrollHeight > innerHeight` numa página longa | A página inteira rola dentro de uma caixa (`scrollY` sempre zero) |
+
+Cada linha desta tabela é candidata a detector em `olhar.mjs` ([melhorar-a-skill.md](melhorar-a-skill.md)): enquanto não vira, é passo manual.
 
 ## Olhar de perto
 
@@ -120,7 +140,7 @@ Ao fechar um conjunto de páginas, pedir uma revisão a um agente de contexto li
 - **Observar:** clareza, utilidade, consistência de nomes e tom, informação repetida, afirmações factuais, origem de depoimentos, adequação de imagens e direitos de uso. Antes de publicar, `npm run pendencias` lista cada texto `[[provisório]]`. Confira se cada seção ajuda uma decisão ou tarefa.
 - **Evidência:** revisão contra os materiais fornecidos e fontes pertinentes; inventário das afirmações ainda pendentes; inspeção da mídia no tamanho, recorte e contexto em que será exibida.
 - **Elevar, não despejar:** conteúdo de apoio (ingredientes, especificações, tabelas, listas) jogado cru num bloco ou modal não atende. Ele precisa da mesma estrutura e acabamento do resto, como abas, grupos, ícones e rótulos, no nível da referência.
-- **Atende quando:** textos e imagens servem ao objetivo, não há prova social ou dado inventado apresentado como real, e placeholders relevantes foram resolvidos ou explicitados. Imagem gerada não deve fingir ser registro real de cliente, instalação ou resultado.
+- **Atende quando:** textos e imagens servem ao objetivo, não há prova social ou dado inventado apresentado como real, o mesmo número tem o mesmo valor em todas as seções, e placeholders relevantes foram resolvidos ou explicitados. Imagem gerada não deve fingir ser registro real de cliente, instalação ou resultado.
 - **Aplicação proporcional:** exija validação especializada quando o conteúdo efetivamente depender dela; não imponha revisão regulatória genérica a qualquer site. Registre créditos e licenças onde forem necessários.
 
 ### 8. Desempenho e movimento
@@ -128,6 +148,7 @@ Ao fechar um conjunto de páginas, pedir uma revisão a um agente de contexto li
 - **Observar:** abertura, resposta à interação, estabilidade do layout, mídia, fontes, código carregado e trabalho causado por animações ou conteúdo fora da tela. Confira alternativas quando um efeito não puder executar.
 - **Evidência:** medição ou observação reproduzível com ferramenta, versão, dispositivo e condições registrados. Para alegar melhoria, compare antes e depois em condições equivalentes e descreva o alcance da medição.
 - **Atende quando:** os objetivos definidos para este projeto são cumpridos nas condições verificadas e não há atraso ou regressão material conhecida nos fluxos prioritários. Se não houve medição, registre a limitação; não invente pontuações ou ganhos.
+- **Canvas e efeito contínuo:** pausa fora da tela e com a aba oculta, reserva sem WebGL, versão parada com movimento reduzido e resolução proporcional à nitidez do efeito ([lista](padroes-de-marca.md#canvas-e-webgl)).
 - **Aplicação proporcional:** não imponha efeitos, bibliotecas ou limites universais. Investigue causas antes de aplicar correções circunstanciais. Reduzir movimento deve preservar conteúdo e funcionalidade; a página não pode depender de uma animação para deixar de estar vazia.
 
 ### 9. Publicação e entrega

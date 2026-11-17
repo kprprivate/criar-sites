@@ -64,10 +64,11 @@ Adjetivo vira regra que se confere olhando a tela. "Premium", "acolhedor", "ousa
 
 Decidir e escrever em `src/css/marca.css`, que é a fonte única: tokens no `:root`, classes de tipo e componentes.
 
-- **Cor:** quais, onde cada uma entra e o contraste medido. Quanta cor usar vem da marca: uma escola infantil pede muita, uma marca sóbria pode pedir uma só.
-- **Letra:** papéis (mostra, título, subtítulo, corpo, rótulo, número). Ver a fonte em tamanho real: fontes com eixo óptico podem borrar no máximo. A escolha sai de um estudo ([abaixo](#estudo-de-letra)).
+- **Cor:** quais, onde cada uma entra e o contraste medido. Quanta cor usar vem da marca: uma escola infantil pede muita, uma marca sóbria pode pedir uma só. Em marca de base neutra, o acento tem o papel escrito (o que ele marca) e é testado **como texto** nos dois temas: se não passa de 4,5:1, só entra como fundo.
+- **Letra:** papéis (mostra, título, subtítulo, corpo, rótulo, número). Ver a fonte em tamanho real: fontes com eixo óptico podem borrar no máximo. A escolha sai de um estudo ([abaixo](#estudo-de-letra)). O tamanho do título é proporcional ao resto: quanto mais ornamento ou efeito na tela, menor o título. A ênfase dentro dele usa um recurso só (itálico, troca de família ou tom), não negrito ([medidas](react-bits-templates.md#letra-e-cor)).
 - **Header:** a forma vem da marca, como uma placa, um selo ou um recorte. A barra de ponta a ponta é o padrão do kit, não uma decisão.
-- **Forma:** botão, cartão, raio, linha. A forma precisa de um motivo vindo da marca.
+- **Forma:** botão, cartão, raio, linha. A forma precisa de um motivo vindo da marca. Uma unidade mínima (um degrau, um chanfro, uma linha) repetida em botão, ícone, marcador e fundo sustenta a ideia em todas as camadas.
+- **Movimento:** uma curva e três durações (resposta de controle, entrada de bloco, laço), como tokens. Mola só para o que segue o ponteiro. Nenhum componente inventa a sua.
 
 ### Estudo de letra
 
@@ -130,7 +131,7 @@ Decisão aprovada vira regra no `CLAUDE.md` do projeto, na seção Identidade. A
 
 ## 10. Receitas de técnica
 
-São técnicas testadas em produção. Servem à ideia da marca da vez; o desenho, o tempo e a forma mudam.
+São técnicas testadas em produção. Servem à ideia da marca da vez; o desenho, o tempo e a forma mudam. Mais mecânicas, estudadas nos templates do React Bits Pro (campo que reage ao cursor, troca de foto pela borda de entrada, cena presa com repouso, moldura fixa, lista que acende por uma variável CSS): [react-bits-templates.md](react-bits-templates.md#receitas-de-mecânica).
 
 **Contorno que corre pela borda.** SVG absoluto dentro do botão, com `<rect>` de `pathLength="1"`, `stroke-dasharray: 1 1.01` e `stroke-dashoffset` animado de 1 a 0 pela Web Animations API, com a duração proporcional ao que falta. Na saída, a linha segue até `-1` em vez de voltar: `-1` e `1` desenham a mesma coisa. Medir com `ResizeObserver`. Um segundo `rect` com `stroke-dasharray: .0001 2` e ponta redonda vira um ponto correndo na frente. No toque, corre ao apertar, em menos tempo. No foco, fica completo e parado.
 
@@ -138,6 +139,6 @@ São técnicas testadas em produção. Servem à ideia da marca da vez; o desenh
 
 **Título que chega borrado.** Filtro SVG `feGaussianBlur` com `stdDeviation="X 0"` só na horizontal, um por linha, animado por `requestAnimationFrame`, com opacidade e `translateX` juntos. Antes do JS, o título fica escondido por CSS com uma `animation` de segurança que o mostra depois de uns 2,6 s, para nunca sumir se o JS falhar. Remover o filtro ao terminar. Vale para todo título que surge: marcar como pronto (o atributo que desliga a segurança) só depois de esconder as linhas e começar a animação; e, se a segurança já mostrou o título (fonte lenta), não animar de novo. Senão ele aparece e some, e o usuário vê "às vezes aparece, às vezes não".
 
-**Seção conduzida pela rolagem.** Seção alta com miolo em `position: sticky`; o progresso (0 a 1) sai de `getBoundingClientRect`. Trilho em `translate3d`, traçado com `getPointAtLength` e `strokeDashoffset`. Física leve (mola com amortecimento) para o que balança na inércia. Pausar fora da tela com `IntersectionObserver`. Em tela em pé, marcos em posições próprias (`data-marco-pe`), porque o traçado muda de proporção. Sem hover que mude o estado, e versão parada com movimento reduzido. Mais em [padroes-de-marca.md](padroes-de-marca.md#seção-conduzida-pela-rolagem).
+**Seção conduzida pela rolagem.** Seção alta com miolo em `position: sticky`; o progresso (0 a 1) sai de `getBoundingClientRect`. Trilho em `translate3d`, traçado com `getPointAtLength` e `strokeDashoffset`. Física leve (mola com amortecimento) para o que balança na inércia. Pausar fora da tela com `IntersectionObserver`. O que acompanha a rolagem se suaviza pelo tempo (`v += (alvo − v) · (1 − e^(−dt/τ))`, τ de 80 a 120 ms), não por "x% por quadro", que muda com a taxa da tela. Em tela em pé, marcos em posições próprias (`data-marco-pe`), porque o traçado muda de proporção. Sem hover que mude o estado, e versão parada com movimento reduzido. Mais em [padroes-de-marca.md](padroes-de-marca.md#seção-conduzida-pela-rolagem).
 
 **Abertura de primeira visita.** Um script curto no `<head>` decide antes de pintar, só na home, sem `sessionStorage` marcado e sem movimento reduzido, e põe uma classe no `<html>`. A abertura some sozinha em pouco mais de um segundo e **ao primeiro toque, tecla ou rolagem**. O CSS tem uma saída de segurança por `animation` (uns 4,5 s), para o JS falhar sem deixar a tela presa. Nos testes, marcar o `sessionStorage` em `ANTES`, em `tools/testes.config.mjs`.

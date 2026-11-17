@@ -67,7 +67,7 @@ Manual, logo, fontes, cores, fotos, tom: decidir o que seguir, melhorar ou edita
 
 ### 4. Criar o padrão visual
 
-Parte da prancha de identidade do dossiê, já avaliada, e a aprofunda: uma ideia geradora que só esta marca poderia ter, regras conferíveis na tela, cor, letra, forma, de três a seis gestos nomeados (cada um com origem, como é, onde entra, limite e resposta ao toque), uma animação de texto, uma seção-assinatura e a tabela do que cada componente faz em repouso, com mouse, no toque e em cada estado. Tudo num guia vivo publicado, que usa os mesmos `marca.css` e `marca.js` do site: **[padrao-visual.md](references/padrao-visual.md)**. Teste final: trocando nome e logo, serviria para qualquer empresa? Se sim, ainda não acabou.
+Parte da prancha de identidade do dossiê, já avaliada, e a aprofunda: uma ideia geradora que só esta marca poderia ter, regras conferíveis na tela, cor, letra, forma, de três a seis gestos nomeados (cada um com origem, como é, onde entra, limite e resposta ao toque), uma animação de texto, uma seção-assinatura e a tabela do que cada componente faz em repouso, com mouse, no toque e em cada estado. Tudo num guia vivo publicado, que usa os mesmos `marca.css` e `marca.js` do site: **[padrao-visual.md](references/padrao-visual.md)**. Teste final: trocando nome e logo, serviria para qualquer empresa? Se sim, ainda não acabou. Regras de construção medidas em templates profissionais (uma curva e três durações, título proporcional ao ornamento, um efeito em doses, e o que os próprios templates erram): [react-bits-templates.md](references/react-bits-templates.md).
 
 ### 5. Planejar as seções e ligar o link
 
@@ -153,7 +153,7 @@ Valem em todo site de marca, salvo pedido em contrário. Técnica de cada um em 
 | Correção ou ajuste pequeno | Preservar o sistema, corrigir a menor causa, testar o que a mudança afeta |
 | Só uma seção ou página | Ler o padrão visual do projeto. Sem padrão, propor o mínimo antes de construir |
 | Só o estudo ou só a identidade | Fazer a etapa e parar nela |
-| Projeto de site em outra stack | Stack do projeto e `--so-ferramentas`. [react-bits.md](references/react-bits.md), se couber |
+| Projeto de site em outra stack | Stack do projeto e `--so-ferramentas`. [react-bits.md](references/react-bits.md), se couber; template do Pro se adapta por [react-bits-templates.md](references/react-bits-templates.md#escolher-e-adaptar-um-template-ou-bloco) |
 | Sistema, painel ou portal | Mesma ordem, com a tarefa no lugar da narrativa ([adaptacoes.md](references/adaptacoes.md)) |
 | Prompt para começar em outro chat | [partida.md](references/partida.md) |
 
@@ -177,6 +177,7 @@ Abrir pelo resultado e pelo link. Depois: o que olhar primeiro, o que foi de fat
 | [adaptacoes.md](references/adaptacoes.md) | Tipo de site que não é vitrine de marca; ordem por incerteza |
 | [registros.md](references/registros.md) | Como manter estado, decisões e evidências sem burocracia |
 | [react-bits.md](references/react-bits.md) | Quando o projeto puder usar React Bits |
+| [react-bits-templates.md](references/react-bits-templates.md) | Etapas 4 e 6, em qualquer stack: o método dos templates do Pro, os defeitos medidos neles e receitas de mecânica. Antes de adaptar um template |
 | [partida.md](references/partida.md) | Só quando pedirem o prompt inicial ou o briefing para outro chat |
 | [melhorar-a-skill.md](references/melhorar-a-skill.md) | Etapa 9 |
 
