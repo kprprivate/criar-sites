@@ -1,0 +1,13 @@
+interface:
+  display_name: "Sites com identidade"
+  short_description: "Marca, nicho premiado, padrão visual e seções em ordem, com kit pronto"
+  default_prompt: "Use $criar-sites para entender a marca, investigar o nicho, criar o padrão visual e construir o site seção por seção."
+  icon_small: "assets/icon.svg"
+  icon_large: "assets/icon.svg"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

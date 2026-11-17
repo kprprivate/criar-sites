@@ -1,0 +1,25 @@
+{
+  "name": "{{SLUG}}-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "guia": "node tools/copia-guia.mjs",
+    "testa": "node tools/testa-tudo.mjs .capturas/paginas",
+    "testa:estados": "node tools/testa-estados.mjs .capturas/estados",
+    "testa:fluxos": "node tools/testa-fluxos.mjs",
+    "testa:detectores": "node tools/testa-detectores.mjs",
+    "favicon": "node tools/favicon.mjs",
+    "pendencias": "node tools/pendencias.mjs",
+    "pacote": "node tools/pendencias.mjs && vite build && node tools/pacote.mjs"
+  },
+  "dependencies": {
+    "lenis": "^1.3.27"
+  },
+  "devDependencies": {
+    "vite": "^6.4.4"
+  }
+}

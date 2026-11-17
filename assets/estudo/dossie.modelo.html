@@ -1,0 +1,315 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dossiê [[Marca]]</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- Modelo do dossiê do estudo do nicho (references/estudo-do-nicho.md). Troque cada [[...]] e apague o que não se aplicar.
+     Dê à página um conceito próprio do nicho, com fontes e cor próprias: ela é a primeira coisa que o usuário vê do projeto.
+     Publique com capturas/ e filmes/ como arquivos de apoio. A primeira frase é o achado principal, não o nome do relatório. -->
+<style>
+:root {
+  --papel: #EDEDEA; --cartao: #F8F8F6; --tinta: #121213; --apoio: #57575A; --fio: #CBCBC6; --sinal: #B8102B; --tela: #1A1A1C;
+  --disp: Georgia, "Times New Roman", serif;
+  --cond: "Arial Narrow", Arial, sans-serif;
+  --corpo: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --m: 1240px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --papel: #131314; --cartao: #1C1C1E; --tinta: #F2F2EF; --apoio: #A9A9A5; --fio: #303032; --sinal: #FF5468; --tela: #000000; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --papel: #131314; --cartao: #1C1C1E; --tinta: #F2F2EF; --apoio: #A9A9A5; --fio: #303032; --sinal: #FF5468; --tela: #000000; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font: 400 16px/1.55 var(--corpo); padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); overflow-x: clip; }
+.miolo { max-width: var(--m); margin-inline: auto; }
+a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--sinal); }
+:focus-visible { outline: 2px solid var(--sinal); outline-offset: 2px; }
+img, video { display: block; max-width: 100%; }
+h1, h2 { font-family: var(--disp); font-weight: 500; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(38px, 6.6vw, 84px); line-height: 1.02; letter-spacing: -.01em; }
+h2 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.06; }
+h3 { font: 600 clamp(24px, 3vw, 34px)/1.05 var(--cond); margin: 0; text-transform: uppercase; }
+h4 { font: 600 14px/1.2 var(--cond); letter-spacing: .1em; text-transform: uppercase; margin: 18px 0 6px; color: var(--apoio); }
+p { margin: 0; max-width: 66ch; }
+ul, ol { margin: 0; padding-left: 18px; max-width: 66ch; }
+li + li { margin-top: 5px; }
+.rotulo { font: 600 13px/1.2 var(--cond); letter-spacing: .12em; text-transform: uppercase; color: var(--apoio); }
+
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--papel); border-bottom: 1px solid var(--fio); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); }
+.nav ul { list-style: none; display: flex; gap: 18px; padding: 0; margin: 0 auto; max-width: var(--m); overflow-x: auto; scrollbar-width: none; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li + li { margin: 0; }
+.nav a { display: block; padding: 13px 0; font: 600 14px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; text-decoration: none; }
+
+.abre { padding-block: clamp(36px, 7vw, 84px) clamp(28px, 4vw, 48px); display: grid; gap: 22px; }
+.abre .lead { font-size: clamp(18px, 2vw, 22px); line-height: 1.4; max-width: 60ch; }
+.numeros { display: flex; flex-wrap: wrap; gap: 10px 30px; color: var(--apoio); }
+.numeros b { font: 600 26px/1 var(--cond); color: var(--tinta); margin-right: 5px; font-variant-numeric: tabular-nums; }
+
+section { padding-block: clamp(40px, 6vw, 76px); border-top: 1px solid var(--fio); }
+.intro { display: grid; gap: 10px; margin-bottom: clamp(20px, 3vw, 34px); }
+.intro p { color: var(--apoio); }
+
+.achados { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 26px 34px; }
+.achados > div { display: grid; gap: 6px; align-content: start; min-width: 0; }
+.achados b { font: 600 21px/1.14 var(--cond); }
+.achados p { color: var(--apoio); font-size: 15px; }
+
+.ficha { padding-block: clamp(26px, 4vw, 44px); border-top: 1px solid var(--fio); }
+.ficha:first-of-type { border-top: 0; padding-top: 0; }
+.ficha__topo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 14px; align-items: baseline; margin-bottom: 14px; }
+.pos { grid-row: span 2; font: 700 clamp(44px, 6vw, 68px)/.9 var(--cond); color: var(--sinal); font-variant-numeric: tabular-nums; align-self: start; }
+.meta { font-size: 14px; color: var(--apoio); max-width: 90ch; }
+.ficha__corpo { display: grid; gap: 22px; }
+@media (min-width: 1020px) { .ficha__corpo { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 34px; } }
+.ficha__texto { min-width: 0; font-size: 15px; }
+.ficha__texto h4:first-child { margin-top: 0; }
+.medido { margin-top: 12px; font-size: 13px; color: var(--apoio); }
+.mosaico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-width: 0; align-content: start; }
+.mosaico .largo { grid-column: 1 / -1; }
+.quadro { margin: 0; min-width: 0; }
+.quadro button { all: unset; display: block; width: 100%; cursor: zoom-in; }
+.quadro button:focus-visible { outline: 2px solid var(--sinal); outline-offset: 2px; }
+.quadro img { width: 100%; background: var(--fio); }
+.quadro figcaption, .filmes figcaption { font-size: 12.5px; color: var(--apoio); padding-top: 4px; }
+.filmes { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.filmes figure { margin: 0; min-width: 0; }
+.filmes video { width: 100%; background: var(--tela); object-fit: cover; }
+.filmes .fc video { aspect-ratio: 16 / 10; }
+.filmes .fm { width: clamp(96px, 16vw, 168px); }
+.filmes .fm video { aspect-ratio: 390 / 844; height: auto; }
+
+.tabela { overflow-x: auto; border: 1px solid var(--fio); background: var(--cartao); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; font: 600 13px/1.2 var(--cond); letter-spacing: .1em; text-transform: uppercase; color: var(--apoio); border-bottom: 1px solid var(--fio); padding: 10px 12px; white-space: nowrap; vertical-align: bottom; }
+td { border-bottom: 1px solid var(--fio); padding: 10px 12px; vertical-align: top; min-width: 130px; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; }
+.faixa { display: block; max-width: 100%; height: auto; margin-bottom: 6px; }
+.tb-botoes { min-width: 860px; }
+.tb-botoes td:nth-child(4) { min-width: 300px; }
+
+.sementes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 30px 34px; }
+.semente { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.semente b { font: 600 23px/1.1 var(--cond); text-transform: uppercase; }
+.semente dl { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 4px 8px; margin: 4px 0 0; font-size: 14px; }
+.semente dt { font: 600 13px/1.5 var(--cond); letter-spacing: .08em; text-transform: uppercase; color: var(--apoio); }
+.semente dd { margin: 0; }
+
+.colunas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 26px 34px; }
+.colunas > div { min-width: 0; }
+.colunas h4 { margin-top: 0; }
+
+.perguntas { counter-reset: q; display: grid; gap: 16px; list-style: none; padding: 0; max-width: 78ch; }
+.perguntas li { counter-increment: q; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 6px; margin: 0; }
+.perguntas li::before { content: counter(q); font: 700 26px/1.1 var(--cond); color: var(--sinal); }
+.perguntas small { display: block; color: var(--apoio); font-size: 14px; margin-top: 2px; }
+
+details.todos > summary { cursor: pointer; font: 600 16px/1.3 var(--cond); letter-spacing: .08em; text-transform: uppercase; padding: 12px 0; }
+.pe { padding-block: 30px 56px; font-size: 13px; color: var(--apoio); border-top: 1px solid var(--fio); }
+
+dialog.zoom { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96dvh; }
+dialog.zoom::backdrop { background: rgba(0, 0, 0, .86); }
+dialog.zoom img { max-width: 96vw; max-height: 92dvh; width: auto; height: auto; }
+dialog.zoom form { position: fixed; top: max(10px, env(safe-area-inset-top, 0px)); right: max(10px, env(safe-area-inset-right, 0px)); }
+dialog.zoom button { border: 0; background: #fff; color: #111; font: 600 14px/1 var(--cond); letter-spacing: .1em; text-transform: uppercase; padding: 12px 14px; cursor: pointer; }
+/* Prancha de identidade: usa as cores e letras da MARCA, não as do dossiê. Troque os tokens --mc-*. */
+#identidade { --mc-fundo: [[#cor de fundo da marca]]; --mc-tinta: [[#cor do texto da marca]]; --mc-destaque: [[#cor de destaque]]; --mc-titulo: [[fonte de título]], serif; --mc-texto: [[fonte de texto]], serif; --mc-rotulo: [[fonte de rótulo]], sans-serif; }
+.prancha { display: grid; gap: 20px; }
+.pr-bloco { background: var(--mc-fundo); color: var(--mc-tinta); padding: clamp(18px, 3vw, 38px); display: grid; gap: 18px; min-width: 0; }
+.pr-rotulo { font: 700 14px/1.2 var(--mc-rotulo); letter-spacing: .1em; text-transform: uppercase; color: var(--mc-destaque); }
+.pr-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; }
+.pr-grade figure { margin: 0; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.pr-regras { display: grid; gap: 6px; max-width: 90ch; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<nav class="nav" aria-label="Seções do dossiê">
+  <ul>
+    <li><a href="#identidade">Identidade</a></li>
+    <li><a href="#achados">Achados</a></li>
+    <li><a href="#grid">As analisadas</a></li>
+    <li><a href="#botoes">Botões</a></li>
+    <li><a href="#ideias">Ideias</a></li>
+    <li><a href="#mapa">Mapa</a></li>
+    <li><a href="#estrutura">Estrutura</a></li>
+    <li><a href="#evitar">Evitar</a></li>
+    <li><a href="#perguntas">Perguntas</a></li>
+    <li><a href="#todos">Todos</a></li>
+  </ul>
+</nav>
+
+<main class="miolo">
+  <header class="abre">
+    <span class="rotulo">[[Marca]] · estudo do nicho · [[data]]</span>
+    <h1>[[O achado principal, numa frase que se discuta.]]</h1>
+    <p class="lead">[[Três frases: o que existe no nicho, o que falta e a vaga que a marca pode ocupar.]]</p>
+    <div class="numeros">
+      <span><b>[[n]]</b>sites levantados</span>
+      <span><b>[[n]]</b>abertos e vistos</span>
+      <span><b>[[n]]</b>analisados a fundo</span>
+      <span><b>0</b>linhas de código do site novo</span>
+    </div>
+  </header>
+
+  <section id="identidade">
+    <div class="intro">
+      <h2>A identidade, elemento por elemento</h2>
+      <p>Proposta para decidir junto com as referências. Ainda não é site. Cada peça sai da marca e traz a regra de uso; as que mexem funcionam aqui.</p>
+    </div>
+    <div class="prancha">
+      <div class="pr-bloco"><span class="pr-rotulo">A ideia</span><p>[[A ideia em uma ou duas frases, de onde ela vem, e o teste da troca de logo.]]</p></div>
+      <div class="pr-bloco"><span class="pr-rotulo">1 · Logo</span><div class="pr-grade">[[Principal em vetor; sobre fundo escuro; uma cor; invertido; só o símbolo; 64, 32 e 16 px; selo, se couber. Uma figure por versão, com legenda.]]</div><ul class="pr-regras"><li>[[Respiro, menor tamanho, o que nunca fazer. Se o vetor foi refeito de PNG fraco, dizer.]]</li></ul></div>
+      <div class="pr-bloco"><span class="pr-rotulo">2 · Cor</span><div class="pr-grade">[[Amostra, nome, código e papel de cada cor.]]</div><ul class="pr-regras"><li>[[Contraste medido de cada par de texto. Os temas da marca lado a lado, com um botão de verdade em cada.]]</li></ul></div>
+      <div class="pr-bloco"><span class="pr-rotulo">3 · Letra</span><div>[[Cada papel com amostra real no idioma do site, acentos incluídos: título, texto, rótulo e número, e o que mais houver. Onde cada uma nunca entra.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">4 · Formas e padrões</span><div class="pr-grade">[[Borda, textura, moldura, divisor: o que sai da marca, com onde entra e o limite.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">5 · Ícones</span><div class="pr-grade">[[De seis a dez ícones num traço só, com a regra.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">6 · Fotografia</span><div class="pr-grade">[[A direção com exemplos reais ou de referência; o que sempre e o que nunca.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">7 · Componentes</span><div>[[Botões com o gesto funcionando, link, abas, estados e a unidade principal do site.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">8 · Aplicações</span><div class="pr-grade">[[De duas a quatro: a tela do celular, uma peça física, o topo ou o rodapé.]]</div></div>
+      <div class="pr-bloco"><span class="pr-rotulo">9 · Voz</span><div class="pr-grade">[[Sim e não, com frases reais da marca.]]</div></div>
+    </div>
+  </section>
+
+  <section id="achados">
+    <div class="intro"><h2>O que o estudo descobriu</h2></div>
+    <div class="achados">
+      <div><b>[[Achado com consequência para o site.]]</b><p>[[A evidência: quem faz, o que foi medido, com o nome de cada site.]]</p></div>
+    </div>
+  </section>
+
+  <section id="grid">
+    <div class="intro">
+      <h2>As [[n]] analisadas a fundo</h2>
+      <p>A ordem é a utilidade para a marca, não o tamanho do site. Toque numa imagem para ampliar. Os filmes são rolagem real, gravada no Chrome. O celular é emulado em 390 × 844, não um aparelho físico.</p>
+    </div>
+
+    <article class="ficha" id="p1">
+      <div class="ficha__topo">
+        <span class="pos">1</span>
+        <h3>[[Nome]]</h3>
+        <p class="meta"><a href="[[url]]" target="_blank" rel="noopener">[[domínio]] ↗</a> · [[o que é]] · <a href="[[url do prêmio]]" target="_blank" rel="noopener">[[prêmio, data]]</a> · estúdio [[nome]]</p>
+      </div>
+      <div class="ficha__corpo">
+        <div class="ficha__texto">
+          <h4>O que vi</h4>
+          <ul><li>[[Só o que foi visto funcionando: rolagem, hover, transição, celular.]]</li></ul>
+          <h4>Levar</h4>
+          <ul><li>[[O princípio, traduzido para esta marca.]]</li></ul>
+          <h4>Não levar</h4>
+          <ul><li>[[O que é a cara dela, ou não serve.]]</li></ul>
+          <p class="medido">[[Visto no Chrome real ou sem interface; emulado no celular.]] Medido: [[Lenis, GSAP, Shopify...]].</p>
+        </div>
+        <div class="mosaico">
+          <figure class="quadro largo"><button type="button"><img src="capturas/x-abertura.webp" alt="[[O que a imagem mostra]]" loading="lazy"></button><figcaption>[[Legenda.]]</figcaption></figure>
+          <div class="filmes largo">
+            <figure class="fc"><video controls muted playsinline preload="none" poster="capturas/x-abertura.webp"><source src="filmes/x-computador.mp4" type="video/mp4"></video><figcaption>Rolagem no computador.</figcaption></figure>
+            <figure class="fm"><video controls muted playsinline preload="none"><source src="filmes/x-celular.mp4" type="video/mp4"></video><figcaption>Celular.</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="botoes">
+    <div class="intro">
+      <h2>Como cada um padroniza os botões</h2>
+      <p>Passei o mouse nos botões com a animação a 20% da velocidade e li o CSS antes e depois. Os quadros são reais. [[O que não foi medido: toque, por exemplo.]]</p>
+    </div>
+    <div class="tabela"><table class="tb-botoes">
+      <thead><tr><th>Site</th><th>Forma</th><th>O que acontece</th><th>Quadros do hover</th></tr></thead>
+      <tbody>
+        <tr><td>[[Nome]]</td><td>[[Forma, raio, cor]]</td><td>[[O gesto, com números]]</td><td><img class="faixa" src="capturas/h-x-botao.webp" alt="[[O gesto em quadros]]" loading="lazy"></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="ideias">
+    <div class="intro">
+      <h2>Ideias que o estudo abriu</h2>
+      <p>Ainda não é a direção. São pontos de partida, cada um saído de algo que só esta marca tem. [[Se der, faça funcionar aqui: passe o mouse ou aperte.]]</p>
+    </div>
+    <div class="sementes">
+      <div class="semente">
+        <b>[[O nome da ideia]]</b>
+        <dl>
+          <dt>Origem</dt><dd>[[O ativo real da marca, com o que foi medido.]]</dd>
+          <dt>Forma</dt><dd>[[Como aparece.]]</dd>
+          <dt>Onde</dt><dd>[[Quais componentes.]]</dd>
+          <dt>Limite</dt><dd>[[Onde não entra. O que precisa de decisão.]]</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="mapa">
+    <div class="intro"><h2>Como esses sites se organizam</h2><p>Uma linha por referência.</p></div>
+    <div class="tabela"><table>
+      <thead><tr><th>Referência</th><th>Navegação</th><th>Home</th><th>Página da unidade</th><th>Prova</th><th>[[O fluxo do negócio]]</th><th>Aproveitar</th></tr></thead>
+      <tbody>
+        <tr><td>[[Nome]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="estrutura">
+    <div class="intro"><h2>A estrutura que eu proporia</h2><p>É o que o mapa sugere. Muda depois da sua escolha.</p></div>
+    <div class="colunas">
+      <div><h4>Menu e home</h4><ol><li>[[Cada seção, na ordem, com a função dela.]]</li></ol></div>
+      <div><h4>Página da unidade</h4><ol><li>[[...]]</li></ol></div>
+      <div><h4>O que vamos precisar</h4><div class="tabela"><table><thead><tr><th>Elemento</th><th>Situação</th></tr></thead><tbody><tr><td>[[Logo em vetor, fotos, regras comerciais]]</td><td>[[Existe, falta, pedir ao cliente]]</td></tr></tbody></table></div></div>
+    </div>
+  </section>
+
+  <section id="evitar">
+    <div class="intro"><h2>O que evitar</h2></div>
+    <div class="achados">
+      <div><b>[[O clichê do nicho.]]</b><p>[[Quem faz, e por que não serve aqui.]]</p></div>
+    </div>
+  </section>
+
+  <section id="perguntas">
+    <div class="intro"><h2>Perguntas desta rodada</h2></div>
+    <ol class="perguntas">
+      <li><div><b>Quais de 3 a 5 você quer levar, e o que gostou em cada uma?</b><small>Vale citar reserva. Vale dizer o que detestou.</small></div></li>
+    </ol>
+  </section>
+
+  <section id="todos">
+    <div class="intro"><h2>Tudo o que foi levantado</h2><p>Fontes e data da consulta. [[Prêmios vêm das páginas ligadas, e não conferi cada um na origem.]] [[Quem bloqueou e quem não abriu.]]</p></div>
+    <details class="todos">
+      <summary>Abrir a lista completa</summary>
+      <div class="tabela"><table>
+        <thead><tr><th>Site</th><th>O que é</th><th>Reconhecimento</th><th>Situação</th></tr></thead>
+        <tbody>
+          <tr><td><a href="[[url]]" target="_blank" rel="noopener">[[Nome]]</a></td><td>[[...]]</td><td>[[Prêmio com link, ou "Não encontrado"]]</td><td>[[Analisada, reserva, vista, bloqueada]]</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <p class="pe">[[Marca]], estudo do nicho, [[data]]. O que foi visto e o que foi só lido está separado em cada ficha.</p>
+</main>
+
+<dialog class="zoom" id="zoom">
+  <form method="dialog"><button type="submit">Fechar</button></form>
+  <img alt="" id="zoom-img">
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById("zoom");
+  var alvo = document.getElementById("zoom-img");
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest(".quadro button");
+    if (!b || !dlg.showModal) return;
+    var im = b.querySelector("img");
+    alvo.src = im.src;
+    alvo.alt = im.alt;
+    dlg.showModal();
+  });
+  dlg.addEventListener("click", function (e) {
+    if (e.target === dlg || e.target === alvo) dlg.close();
+  });
+})();
+</script>

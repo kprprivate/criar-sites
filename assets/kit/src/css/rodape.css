@@ -1,0 +1,28 @@
+/* O rodapé que sobe por cima da última seção e enche a tela. Sem JS, ou sem as medidas, tudo rola normal. */
+html.rodape-sobe main { position: relative; }
+/* Nunca empurra para baixo uma seção curta: só segura a alta, com o pé dela em 82% da tela. Sem ancestral com overflow hidden, que prende o sticky. */
+html.rodape-sobe .ultima-secao { position: sticky; top: min(0px, calc(82svh - var(--ultima-h, 0px))); z-index: 0; }
+html.rodape-sobe main::after { content: ""; display: block; height: var(--rodape-h, 0px); }
+html.rodape-sobe .rodape { margin-top: calc(-1 * var(--rodape-h, 0px)); }
+.rodape { position: relative; z-index: 2; background: var(--fundo-rodape); color: var(--texto-rodape); }
+.rodape ::selection { background: var(--texto-rodape); color: var(--fundo-rodape); }
+.rodape__miolo { display: flex; flex-direction: column; min-height: 100svh; padding-block: clamp(22px, 4svh, 44px) clamp(70px, 11svh, 84px); gap: clamp(20px, 3.4svh, 40px); }
+.rodape__frase { flex: 1 1 auto; display: flex; align-items: center; font-size: min(8.2vw, 15.2svh); }
+.rodape__mapa { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 22px clamp(18px, 3vw, 48px); padding-top: clamp(16px, 2.6svh, 28px); border-top: 1px solid color-mix(in srgb, currentColor 26%, transparent); }
+.rodape__coluna { display: grid; gap: 4px; align-content: start; justify-items: start; font-size: 15px; }
+.rodape__coluna h2 { margin: 0 0 8px; }
+.rodape__base { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 24px; padding-right: 62px; font-size: 13px; opacity: .8; }
+.rodape__pausa { all: unset; cursor: pointer; padding: 6px 0; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.rodape__pausa:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (max-width: 900px) {
+  .rodape__frase { font-size: clamp(40px, 12vw, 80px); }
+}
+
+/* ---------- Os botões fixos ---------- */
+.flutuantes { position: fixed; right: max(14px, env(safe-area-inset-right, 0px)); bottom: max(14px, env(safe-area-inset-bottom, 0px)); z-index: 20; display: grid; gap: 8px; transition: transform var(--t-sai) var(--curva); }
+.flutuante { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--fundo); color: var(--tinta); box-shadow: 0 0 0 1px color-mix(in srgb, var(--tinta) 14%, transparent); text-decoration: none; touch-action: manipulation; }
+.flutuante:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.flutuante--topo { opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 220ms linear, transform var(--t-sai) var(--curva), visibility 0s linear 220ms; }
+.flutuantes[data-topo-visivel] .flutuante--topo { opacity: 1; visibility: visible; transform: none; transition: opacity 220ms linear, transform var(--t-sai) var(--curva), visibility 0s; }
+/* Botão fixo não pode cobrir ação principal: onde cobre, ele sobe ou sai (uma regra por página, com o motivo). */
+body:has([data-barra-acao][data-visivel]) .flutuantes { transform: translateY(-78px); }

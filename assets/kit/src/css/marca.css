@@ -1,0 +1,115 @@
+/* Tokens e componentes da marca. Este arquivo é a base do site; o guia (docs/guia) só o demonstra.
+   Vem em cinza de propósito: enquanto estiver assim, a marca ainda não entrou. Tudo com [[...]] é decisão da etapa do padrão visual. */
+:root {
+  /* [[cor: trocar pela paleta da marca]] */
+  --fundo: #FFFFFF;
+  --tinta: #141416;
+  --apoio: #5C5C60;        /* texto de apoio: conferir 4,5:1 sobre o fundo */
+  --fio-cor: #D4D4D1;      /* linhas e contornos em repouso */
+  --nevoa: #F3F3F1;        /* espera de foto e blocos calmos */
+  --destaque: #3A3A3E;     /* a cor da marca: seleção de texto, poucos blocos */
+  --erro: #A3182B;         /* só em erro de formulário */
+  --fundo-heroi: #E6E6E3;  /* abertura e rodapé também são da marca: claros ou escuros, com foto ou sem */
+  --texto-heroi: var(--tinta);
+  --fundo-rodape: #DCDCD9;
+  --texto-rodape: var(--tinta);
+
+  /* [[letra: trocar pelas fontes da marca]] */
+  --titulo: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --corpo: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* [[movimento: a curva e os tempos da marca]] */
+  --curva: cubic-bezier(.65, .05, 0, 1);
+  --curva-entra: cubic-bezier(.16, 1, .3, 1);
+  --t-resposta: 180ms;
+  --t-gesto: 760ms;
+  --t-sai: 380ms;
+
+  /* espaço */
+  --margem: clamp(20px, 3.4vw, 56px);
+  --secao: clamp(84px, 11vw, 176px);
+}
+
+/* A barra de rolagem nunca aparece (regra do usuário). Toda lista de lado e área que rola tem outro meio de navegar. */
+html, * { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
+html { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--destaque); color: var(--fundo); text-shadow: none; }
+
+/* ---------- Tipografia ---------- */
+.t-mostra { font-family: var(--titulo); font-weight: 400; font-size: clamp(44px, 8.4vw, 132px); line-height: 1; letter-spacing: -.012em; margin: 0; text-wrap: balance; }
+.t-titulo { font-family: var(--titulo); font-weight: 400; font-size: clamp(32px, 4.6vw, 68px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.t-sub { font-family: var(--titulo); font-weight: 400; font-size: clamp(22px, 2.3vw, 30px); line-height: 1.16; margin: 0; }
+.t-rotulo { font: 500 14px/1.3 var(--corpo); color: var(--apoio); }
+.t-corpo { font: 400 16px/1.58 var(--corpo); }
+.t-apoio { font: 400 14px/1.5 var(--corpo); color: var(--apoio); }
+
+/* ---------- Botão ----------
+   [[O gesto do botão é a primeira decisão da marca: forma, repouso, mouse, foco, toque, esperando. Em marca.js, ligaGestos.]] */
+.bt {
+  --h: 50px;
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-sizing: border-box;
+  height: var(--h); min-width: 44px; padding: 0 calc(var(--h) * .6);
+  border: 0; border-radius: 6px; cursor: pointer; text-decoration: none; white-space: nowrap;
+  background: var(--tinta); color: var(--fundo);
+  font: 500 15px/1 var(--corpo);
+  transition: background-color var(--t-resposta) linear, color var(--t-resposta) linear, box-shadow var(--t-resposta) linear;
+  -webkit-user-select: none; user-select: none; touch-action: manipulation;
+}
+.bt > span { position: relative; z-index: 2; }
+.bt:hover, .bt:focus-visible, .bt:active { background: var(--destaque); }
+.bt:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.bt--vazado { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1px var(--fio-cor); }
+.bt--vazado:hover, .bt--vazado:focus-visible, .bt--vazado:active { background: var(--tinta); color: var(--fundo); }
+.bt--claro { background: var(--fundo); color: var(--tinta); }
+.bt--claro:hover, .bt--claro:focus-visible, .bt--claro:active { background: var(--nevoa); }
+.bt--p { --h: 40px; font-size: 14px; }
+.bt--g { --h: 60px; font-size: 16px; }
+.bt[disabled], .bt[aria-disabled="true"] { background: var(--nevoa); color: #8C8C8F; cursor: not-allowed; }
+
+.bt-ic { --h: 44px; position: relative; display: inline-grid; place-items: center; width: var(--h); height: var(--h); padding: 0; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; box-shadow: inset 0 0 0 1px var(--fio-cor); touch-action: manipulation; }
+.bt-ic[aria-disabled="true"] { opacity: .35; cursor: default; }
+.bt-ic:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Link ---------- */
+.reta { position: relative; display: inline-block; width: fit-content; color: inherit; text-decoration: none; padding-bottom: 3px; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
+.reta::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: 100% 50%; transition: transform var(--t-sai) var(--curva); }
+.reta:hover::after, .reta:focus-visible::after, .reta:active::after { transform: scaleX(1); transform-origin: 0 50%; transition-duration: var(--t-gesto); }
+.reta:focus-visible { outline: none; }
+.reta--menu { background: none; }
+
+/* ---------- Abas ---------- */
+.abas { display: flex; flex-wrap: wrap; gap: 4px clamp(18px, 3vw, 34px); border-bottom: 1px solid var(--fio-cor); }
+.aba { all: unset; position: relative; padding: 12px 0; cursor: pointer; color: var(--apoio); white-space: nowrap; font: 500 15px/1.3 var(--corpo); transition: color var(--t-resposta) linear; }
+.aba::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--tinta); transform: scaleX(0); transform-origin: 100% 50%; transition: transform var(--t-sai) var(--curva); }
+.aba:hover, .aba[aria-selected="true"], .aba:focus-visible { color: var(--tinta); }
+.aba:hover::after, .aba[aria-selected="true"]::after, .aba:focus-visible::after { transform: scaleX(1); transform-origin: 0 50%; }
+
+/* ---------- Campo ---------- */
+.campo { display: grid; gap: 4px; }
+.campo label { font: 500 14px/1.3 var(--corpo); color: var(--apoio); }
+/* 16 px ou mais: abaixo disso, o iPhone dá zoom ao focar. O outline transparente aparece no alto contraste. */
+.campo input, .campo textarea, .campo select { width: 100%; min-height: 44px; padding: 0; border: 0; border-bottom: 1px solid var(--fio-cor); border-radius: 0; background: transparent; color: var(--tinta); font: 400 16px/1.2 var(--corpo); outline: 1px solid transparent; }
+.campo input:focus, .campo textarea:focus, .campo select:focus { border-bottom-color: var(--tinta); box-shadow: inset 0 -1px 0 var(--tinta); }
+.campo__erro { color: var(--erro); font-size: 14px; }
+
+/* ---------- A espera: nada carrega do nada ----------
+   Tudo que o JS monta depois chega no HTML com a forma do que vem (src/casca/espera-*.html, <!--espera:nome:n-->):
+   blocos na névoa, do tamanho do conteúdo, com um pulso lento. Enquanto há esqueleto, a página ocupa ao menos uma tela,
+   para o rodapé nunca aparecer antes do conteúdo. O JS troca o conteúdo do mesmo container, e o esqueleto sai sozinho. */
+@keyframes espera { 50% { opacity: .45; } }
+.espera, .espera-linha { animation: espera 1.8s ease-in-out infinite; background: var(--nevoa); pointer-events: none; }
+.espera { display: block; }
+.espera-linha { display: block; height: var(--a, 12px); width: var(--l, 60%); max-width: 100%; }
+/* Com o footer que sobe por cima da última seção, somar a altura que ele avança (--rodape-h), ou ele entra na tela. */
+main:has(.espera, .espera-linha) { min-height: calc(100svh + var(--rodape-h, 0px)); }
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0ms !important; animation-duration: .01ms !important; animation-delay: 0ms !important; }
+}

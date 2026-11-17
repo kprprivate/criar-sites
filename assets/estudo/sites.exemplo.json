@@ -1,0 +1,11 @@
+[
+  { "slug": "exemplo", "url": "https://exemplo.com/" },
+  {
+    "slug": "exemplo-a-fundo",
+    "url": "https://exemplo.com/",
+    "pages": { "lista": "https://exemplo.com/colecao", "pdp": "https://exemplo.com/produto" },
+    "portao": "Enter",
+    "esperaPortao": 4200,
+    "esperaExtra": 2000
+  }
+]

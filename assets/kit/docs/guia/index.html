@@ -1,0 +1,348 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Identidade {{NOME}}</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- O guia vivo: a própria página é a marca. Fica pronto e aprovado antes da primeira seção do site.
+     Usa os mesmos marca.css e marca.js do site: `npm run guia` copia para esta pasta. Para publicar, leve os dois arquivos junto.
+     Troque cada [[...]] e apague o que não se aplicar. Contrato de cada seção: references/padrao-visual.md, na skill. -->
+<link rel="stylesheet" href="marca.css">
+<style>
+html, body { background: var(--fundo); color: var(--tinta); }
+html { scroll-padding-top: 72px; }
+body { margin: 0; font: 400 16px/1.58 var(--corpo); overflow-x: clip; }
+*, *::before, *::after { box-sizing: border-box; }
+.m { padding-left: max(var(--margem), max(16px, env(safe-area-inset-left, 0px))); padding-right: max(var(--margem), max(16px, env(safe-area-inset-right, 0px))); }
+a { color: inherit; }
+p { margin: 0; max-width: 62ch; }
+h2, h3 { margin: 0; font-weight: 400; }
+
+.topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 60px; background: var(--fundo); border-bottom: 1px solid var(--fio-cor); }
+.topo nav { display: flex; gap: clamp(14px, 2.2vw, 28px); overflow-x: auto; }
+.topo nav a { padding: 4px 0; white-space: nowrap; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 21; background: var(--fundo); }
+
+.abre { display: grid; gap: 22px; padding-block: clamp(56px, 8vw, 120px) clamp(48px, 6vw, 88px); }
+.abre .lead { font: 400 clamp(18px, 1.9vw, 23px)/1.42 var(--corpo); max-width: 40em; }
+.acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.sec { padding-block: var(--secao); border-top: 1px solid var(--fio-cor); }
+.sec__cab { display: grid; gap: 14px; margin-bottom: clamp(36px, 5vw, 72px); max-width: 60rem; }
+.sec__cab p { color: var(--apoio); font-size: 17px; }
+
+.decisoes { display: grid; }
+.decisao { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 12px clamp(24px, 5vw, 80px); padding-block: clamp(22px, 2.6vw, 34px); border-top: 1px solid var(--fio-cor); }
+.decisao:first-child { border-top: 0; padding-top: 0; }
+@media (max-width: 800px) { .decisao { grid-template-columns: minmax(0, 1fr); } }
+
+.regras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(30px, 4vw, 60px) clamp(24px, 3.4vw, 56px); }
+.regra { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.regra p { color: var(--apoio); font-size: 15px; }
+@media (max-width: 960px) { .regras { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .regras { grid-template-columns: minmax(0, 1fr); } }
+
+.logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--fio-cor); border: 1px solid var(--fio-cor); }
+.logos > div { display: grid; place-items: center; min-height: 220px; padding: 24px; line-height: 0; }
+.logos svg { width: 72px; height: auto; fill: currentColor; }
+.bg-b { background: var(--fundo); color: var(--tinta); }
+.bg-t { background: var(--tinta); color: var(--fundo); }
+.bg-d { background: var(--destaque); color: var(--fundo); }
+@media (max-width: 620px) { .logos { grid-template-columns: minmax(0, 1fr); } .logos > div { min-height: 150px; } }
+
+.cores { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); min-height: 260px; border: 1px solid var(--fio-cor); }
+.cor { display: flex; flex-direction: column; justify-content: flex-end; gap: 2px; padding: 14px; min-width: 0; min-height: 130px; }
+.cor b { font: 500 14px/1.3 var(--corpo); }
+.cor span { font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.letra { display: grid; gap: clamp(30px, 4vw, 56px); }
+.letra__linha { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 8px 24px; align-items: baseline; border-top: 1px solid var(--fio-cor); padding-top: 12px; }
+@media (max-width: 720px) { .letra__linha { grid-template-columns: minmax(0, 1fr); } }
+
+.superficies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sup { display: grid; gap: 22px; align-content: start; padding: clamp(22px, 3vw, 40px); min-width: 0; }
+.sup__linha { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.sup .t-rotulo { opacity: .66; }
+.sup--b { box-shadow: inset 0 0 0 1px var(--fio-cor); }
+.sup--t { background: var(--tinta); color: var(--fundo); }
+.sup--d { background: var(--destaque); color: var(--fundo); }
+.sup--t .bt--vazado, .sup--d .bt--vazado { color: var(--fundo); }
+@media (max-width: 1000px) { .superficies { grid-template-columns: minmax(0, 1fr); } }
+
+.pecinhas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); }
+.pecinhas > div { display: grid; gap: 14px; align-content: start; min-width: 0; }
+@media (max-width: 900px) { .pecinhas { grid-template-columns: minmax(0, 1fr); } }
+
+.tabela { border-top: 1px solid var(--tinta); }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th { text-align: left; padding: 11px 16px 11px 0; font: 500 13px/1.3 var(--corpo); color: var(--apoio); border-bottom: 1px solid var(--fio-cor); white-space: nowrap; }
+td { padding: 14px 16px 14px 0; vertical-align: top; border-bottom: 1px solid var(--fio-cor); min-width: 120px; line-height: 1.45; }
+td:first-child { font-family: var(--titulo); font-size: 19px; }
+/* No celular a tabela vira ficha: sem barra de rolagem, nenhuma coluna pode ficar escondida para o lado. O rótulo vem de data-r, posto pelo script. */
+@media (max-width: 720px) {
+  .tabela table, .tabela tbody, .tabela tr { display: block; width: 100%; }
+  .tabela thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .tabela tr { padding-block: 16px; border-bottom: 1px solid var(--fio-cor); }
+  .tabela td { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; padding: 3px 0; border: 0; min-width: 0; }
+  .tabela td::before { content: attr(data-r); font: 500 12px/1.6 var(--corpo); color: var(--apoio); }
+  .tabela td:first-child { display: block; margin-bottom: 6px; }
+  .tabela td:first-child::before { content: none; }
+}
+.det[hidden] { display: none; }
+
+.pedidos { list-style: none; padding: 0; margin: 0; display: grid; counter-reset: q; }
+.pedidos li { counter-increment: q; display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 10px; padding-block: 20px; border-top: 1px solid var(--fio-cor); }
+.pedidos li::before { content: counter(q); font-family: var(--titulo); font-size: 30px; line-height: 1.1; }
+.pedidos p { color: var(--apoio); margin-top: 6px; font-size: 15px; }
+.fim { background: var(--tinta); color: var(--fundo); padding-block: clamp(60px, 8vw, 120px); }
+.fim ::selection { background: var(--fundo); color: var(--tinta); }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- [[O logo em vetor]] -->
+    <symbol id="logo" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18"/></symbol>
+  </defs>
+</svg>
+
+<header class="topo m">
+  <span class="t-rotulo">{{NOME}}</span>
+  <nav aria-label="Seções do guia">
+    <a class="reta reta--menu t-rotulo" href="#decisoes">Decisões</a>
+    <a class="reta reta--menu t-rotulo" href="#regras">Regras</a>
+    <a class="reta reta--menu t-rotulo" href="#ideia">A ideia</a>
+    <a class="reta reta--menu t-rotulo" href="#botoes">Botões</a>
+    <a class="reta reta--menu t-rotulo" href="#gestos">Gestos</a>
+    <a class="reta reta--menu t-rotulo" href="#detalhes">Detalhes</a>
+    <a class="reta reta--menu t-rotulo" href="#pedido">Decidir</a>
+  </nav>
+</header>
+
+<main>
+  <section class="abre m">
+    <span class="t-rotulo">Identidade de {{NOME}} · proposta · {{DATA}}</span>
+    <h1 class="t-mostra">[[O nome da ideia.]]</h1>
+    <p class="lead">[[Duas frases: a ideia geradora e onde ela aparece. Precisa sair de algo que só esta marca tem.]]</p>
+    <div class="acoes">
+      <a class="bt" href="#botoes"><span>Ver os botões</span></a>
+      <a class="bt bt--vazado" href="#gestos"><span>Ver os gestos</span></a>
+    </div>
+  </section>
+
+  <section class="sec m" id="decisoes">
+    <div class="sec__cab">
+      <span class="t-rotulo">Suas perguntas</span>
+      <h2 class="t-titulo">O que decidi, e por quê.</h2>
+    </div>
+    <div class="decisoes">
+      <div class="decisao">
+        <h3 class="t-sub">[[A pergunta do usuário ou do cliente]]</h3>
+        <div><p>[[A resposta, com o que foi medido ou visto no estudo.]]</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec m" id="regras">
+    <div class="sec__cab">
+      <span class="t-rotulo">[[O que "luxuoso", "acolhedor" ou "ousado" quer dizer aqui]]</span>
+      <h2 class="t-titulo">Regras que dá para conferir na tela.</h2>
+      <p>O que se repetiu nas marcas boas do estudo. Se uma tela quebra uma destas regras, ela sai do padrão.</p>
+    </div>
+    <div class="regras">
+      <div class="regra"><h3 class="t-sub">[[Regra]]</h3><p>[[Com número ou critério observável: espaço, cor, tamanho, tempo, tom.]]</p></div>
+      <div class="regra"><h3 class="t-sub">[[Regra]]</h3><p>[[...]]</p></div>
+      <div class="regra"><h3 class="t-sub">[[Regra]]</h3><p>[[...]]</p></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="ideia">
+    <div class="sec__cab">
+      <span class="t-rotulo">A ideia</span>
+      <h2 class="t-titulo">[[O nome da ideia.]]</h2>
+      <p>[[De onde vem: as coisas que já são da marca. Onde aparece: logo, botão, link, seção. Passe o mouse, ou toque no celular.]]</p>
+    </div>
+  </section>
+
+  <section class="sec m" id="logo">
+    <div class="sec__cab">
+      <span class="t-rotulo">Logo</span>
+      <h2 class="t-titulo">[[O logo, em vetor.]]</h2>
+    </div>
+    <div class="logos">
+      <div class="bg-b"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg></div>
+      <div class="bg-t"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg></div>
+      <div class="bg-d"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#logo"/></svg></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="cor">
+    <div class="sec__cab">
+      <span class="t-rotulo">Cor</span>
+      <h2 class="t-titulo">[[A paleta em uma frase.]]</h2>
+      <p>[[Onde cada cor entra e o contraste medido. O que foi rejeitado, e por quem.]]</p>
+    </div>
+    <div class="cores">
+      <div class="cor bg-b"><b>Fundo</b><span>[[#hex]]</span></div>
+      <div class="cor bg-t"><b>Tinta</b><span>[[#hex]]</span></div>
+      <div class="cor bg-d"><b>Destaque</b><span>[[#hex]]</span></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="letra">
+    <div class="sec__cab">
+      <span class="t-rotulo">Letra</span>
+      <h2 class="t-titulo">[[As fontes em uma frase.]]</h2>
+    </div>
+    <div class="letra">
+      <div class="letra__linha"><span class="t-apoio">Mostra</span><span class="t-mostra">[[Frase]]</span></div>
+      <div class="letra__linha"><span class="t-apoio">Título</span><span class="t-titulo">[[Título de seção]]</span></div>
+      <div class="letra__linha"><span class="t-apoio">Subtítulo</span><span class="t-sub">[[Subtítulo]]</span></div>
+      <div class="letra__linha"><span class="t-apoio">Corpo</span><span class="t-corpo">[[Texto corrido com um comprimento real, para ver a leitura.]]</span></div>
+      <div class="letra__linha"><span class="t-apoio">Rótulo</span><span class="t-rotulo">[[Rótulo]]</span></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="botoes">
+    <div class="sec__cab">
+      <span class="t-rotulo">Botões</span>
+      <h2 class="t-titulo">[[Todos com o mesmo gesto: o nome dele.]]</h2>
+      <p>[[Por que esta forma. O que o estudo mediu nas outras marcas.]] Passe o mouse, use o Tab e toque no celular.</p>
+    </div>
+    <div class="superficies">
+      <div class="sup sup--b"><span class="t-rotulo">Sobre o fundo</span><div class="sup__linha"><a class="bt" href="#botoes"><span>Principal</span></a><a class="bt bt--vazado" href="#botoes"><span>Secundário</span></a><a class="bt bt--p" href="#botoes"><span>Pequeno</span></a></div></div>
+      <div class="sup sup--t"><span class="t-rotulo">Sobre a tinta</span><div class="sup__linha"><a class="bt bt--claro" href="#botoes"><span>Principal</span></a><a class="bt bt--vazado" href="#botoes"><span>Secundário</span></a></div></div>
+      <div class="sup sup--d"><span class="t-rotulo">Sobre o destaque</span><div class="sup__linha"><a class="bt bt--claro" href="#botoes"><span>Principal</span></a><a class="bt bt--vazado" href="#botoes"><span>Secundário</span></a></div></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="pecas">
+    <div class="sec__cab">
+      <span class="t-rotulo">Componentes pequenos</span>
+      <h2 class="t-titulo">[[Links, abas e campos.]]</h2>
+    </div>
+    <div class="pecinhas">
+      <div><span class="t-rotulo">Link</span><p>Um <a class="reta" href="#pecas">link dentro do texto</a> e outro <a class="reta reta--menu" href="#pecas">sem linha em repouso</a>.</p></div>
+      <div><span class="t-rotulo">Abas</span><div class="abas" role="tablist" aria-label="Exemplo"><button class="aba" role="tab" aria-selected="true">Um</button><button class="aba" role="tab" aria-selected="false" tabindex="-1">Dois</button></div></div>
+      <div><span class="t-rotulo">Campo</span><div class="campo"><label for="c1">Nome</label><input id="c1" placeholder="Como quer ser chamado"></div></div>
+    </div>
+  </section>
+
+  <section class="sec m" id="gestos">
+    <div class="sec__cab">
+      <span class="t-rotulo">Movimento</span>
+      <h2 class="t-titulo">[[Quantos gestos e um texto. Nada além disso.]]</h2>
+      <p>Antes de criar qualquer efeito novo, a pergunta é: isso já não é um destes?</p>
+    </div>
+    <div class="tabela"><table>
+      <thead><tr><th>Gesto</th><th>De onde vem</th><th>Como é</th><th>Onde entra</th><th>Limite</th><th>No celular</th></tr></thead>
+      <tbody>
+        <tr><td>[[O nome]]</td><td>[[O ativo da marca]]</td><td>[[O que acontece]]</td><td>[[Quais componentes]]</td><td>[[Até onde]]</td><td>[[A resposta ao toque]]</td></tr>
+        <tr><td>[[O gesto da seção-assinatura]]</td><td>[[...]]</td><td>[[...]]</td><td>[[Uma seção]]</td><td>[[...]]</td><td>[[...]]</td></tr>
+        <tr><td>[[O texto de abertura]]</td><td>[[...]]</td><td>[[Como o título chega]]</td><td>[[Título de abertura]]</td><td>[[Uma vez por página]]</td><td>[[...]]</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec m" id="detalhes">
+    <div class="sec__cab">
+      <span class="t-rotulo">Cada detalhe</span>
+      <h2 class="t-titulo">O que cada componente do site faz.</h2>
+      <p>É a especificação para os próximos blocos. O que está nesta tabela ainda não foi construído, salvo o que aparece vivo nesta página.</p>
+    </div>
+    <div class="abas" role="tablist" aria-label="Detalhes por grupo">
+      <button class="aba" role="tab" aria-selected="true" aria-controls="det-nav" id="aba-nav" data-det>Navegação</button>
+      <button class="aba" role="tab" aria-selected="false" aria-controls="det-acao" id="aba-acao" data-det tabindex="-1">[[A ação principal]]</button>
+      <button class="aba" role="tab" aria-selected="false" aria-controls="det-estados" id="aba-estados" data-det tabindex="-1">Estados</button>
+    </div>
+    <div class="tabela det" role="tabpanel" id="det-nav" aria-labelledby="aba-nav"><table>
+      <thead><tr><th>Componente</th><th>Em repouso</th><th>Com mouse ou foco</th><th>No toque</th><th>Tempo</th></tr></thead>
+      <tbody>
+        <tr><td>Header</td><td>[[...]]</td><td>Some ao descer e volta ao subir</td><td>Igual</td><td>[[ms]]</td></tr>
+        <tr><td>Menu</td><td>[[...]]</td><td>[[...]]</td><td>Tela inteira</td><td>[[ms]]</td></tr>
+        <tr><td>Troca de página</td><td>[[...]]</td><td>[[...]]</td><td>Igual</td><td>[[ms]]</td></tr>
+        <tr><td>Voltar ao topo</td><td>Depois de 60% da primeira tela</td><td>[[...]]</td><td>[[...]]</td><td>[[ms]]</td></tr>
+        <tr><td>Rodapé</td><td>Sobe por cima da última seção</td><td>[[...]]</td><td>Igual</td><td>[[ms]]</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tabela det" role="tabpanel" id="det-acao" aria-labelledby="aba-acao" hidden><table>
+      <thead><tr><th>Componente</th><th>Em repouso</th><th>Com mouse ou foco</th><th>No toque</th><th>Tempo</th></tr></thead>
+      <tbody>
+        <tr><td>[[Cartão, preço, formulário, contador]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td><td>[[ms]]</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tabela det" role="tabpanel" id="det-estados" aria-labelledby="aba-estados" hidden><table>
+      <thead><tr><th>Situação</th><th>O que acontece</th></tr></thead>
+      <tbody>
+        <tr><td>Foto carregando</td><td>[[Espaço reservado: a página não pula]]</td></tr>
+        <tr><td>Esperando resposta</td><td>[[O botão não aceita segundo clique]]</td></tr>
+        <tr><td>Erro de campo</td><td>[[O que a pessoa digitou continua lá]]</td></tr>
+        <tr><td>Sucesso</td><td>[[...]]</td></tr>
+        <tr><td>Lista vazia</td><td>[[Uma frase e um caminho]]</td></tr>
+        <tr><td>Foco de teclado</td><td>[[...]]</td></tr>
+        <tr><td>Movimento reduzido</td><td>Tudo troca direto, sem correr</td></tr>
+        <tr><td>Toque</td><td>Resposta na hora, e nenhum estado fica preso depois</td></tr>
+        <tr><td>Seleção de texto</td><td>[[A cor da marca]]</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec m" id="referencias">
+    <div class="sec__cab">
+      <span class="t-rotulo">Referências escolhidas</span>
+      <h2 class="t-titulo">[[Quantas, cada uma com um papel.]]</h2>
+      <p>O dossiê completo continua no <a class="reta" href="[[link]]" target="_blank" rel="noopener">estudo</a>.</p>
+    </div>
+    <div class="tabela"><table>
+      <thead><tr><th>Referência</th><th>O papel</th><th>O que levar</th><th>O que não levar</th></tr></thead>
+      <tbody>
+        <tr><td>[[Nome]]</td><td>[[...]]</td><td>[[...]]</td><td>[[...]]</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec m" id="pedido">
+    <div class="sec__cab">
+      <span class="t-rotulo">Para decidir</span>
+      <h2 class="t-titulo">[[Poucas perguntas que mudam a direção.]]</h2>
+    </div>
+    <ol class="pedidos">
+      <li><div><h3 class="t-sub">[[A ideia é a identidade da marca?]]</h3><p>[[Se algo incomodar, dizer o quê. A resposta vira regra em cada componente.]]</p></div></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="fim m">
+  <p class="t-titulo">{{NOME}}</p>
+</footer>
+
+<script src="marca.js"></script>
+<script>
+(function () {
+  // Tabela vira ficha no celular: cada célula leva o rótulo da coluna.
+  document.querySelectorAll(".tabela table").forEach(function (t) {
+    var cab = Array.prototype.map.call(t.querySelectorAll("thead th"), function (th) { return th.textContent; });
+    t.querySelectorAll("tbody tr").forEach(function (tr) {
+      Array.prototype.forEach.call(tr.children, function (td, i) { td.setAttribute("data-r", cab[i] || ""); });
+    });
+  });
+  // As abas dos detalhes.
+  var abas = Array.prototype.slice.call(document.querySelectorAll("[data-det]"));
+  function escolhe(a, foco) {
+    abas.forEach(function (b) {
+      var sim = b === a;
+      b.setAttribute("aria-selected", sim ? "true" : "false");
+      b.tabIndex = sim ? 0 : -1;
+      document.getElementById(b.getAttribute("aria-controls")).hidden = !sim;
+    });
+    if (foco) a.focus();
+  }
+  abas.forEach(function (a, i) {
+    a.addEventListener("click", function () { escolhe(a); });
+    a.addEventListener("keydown", function (e) {
+      var n = abas.length;
+      var alvo = { ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
+      if (alvo === undefined) return;
+      e.preventDefault();
+      escolhe(abas[alvo], true);
+    });
+  });
+})();
+</script>

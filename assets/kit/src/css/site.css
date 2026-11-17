@@ -1,0 +1,5 @@
+/* Todas as folhas, na ordem. Entra por <link> no <head>: nunca importar CSS pelo JS, senão a página pinta sem estilo. */
+@import "./marca.css";
+@import "./casca.css";
+@import "./rodape.css";
+@import "./paginas.css";

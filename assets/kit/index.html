@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<!--cabeca-->
+  <title>{{NOME}} | [[o que é, em poucas palavras]]</title>
+  <meta name="description" content="[[Uma frase com o que o site oferece e para quem.]]">
+  <meta property="og:title" content="{{NOME}}">
+  <meta property="og:description" content="[[A mesma frase, para o link compartilhado.]]">
+</head>
+<body id="topo" data-pagina="home">
+<!--topo-->
+  <main id="conteudo">
+    <!-- Esqueleto só para o kit abrir e os testes rodarem. As seções reais saem da tabela de blocos em docs/ESTADO.md, uma por vez. -->
+    <section class="heroi" data-heroi>
+      <div class="heroi__miolo m">
+        <h1 class="t-mostra">[[A frase de abertura]]</h1>
+        <div class="heroi__acoes">
+          <a class="bt" href="/sobre" data-acao-principal><span>[[Ação principal]]</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faixa que corre: só quando fizer sentido para a marca (padroes-de-marca.md). Exemplo de uso em src/js/faixa.js. -->
+
+    <section class="secao m">
+      <div class="secao__cab">
+        <span class="t-rotulo">[[Rótulo]]</span>
+        <h2 class="t-titulo">[[Título da seção]]</h2>
+      </div>
+      <div class="abas" role="tablist" aria-label="[[Assunto das abas]]">
+        <button class="aba" type="button" role="tab" id="aba-1" aria-controls="p-1">[[Grupo 1]]</button>
+        <button class="aba" type="button" role="tab" id="aba-2" aria-controls="p-2">[[Grupo 2]]</button>
+      </div>
+      <div class="painel-aba" role="tabpanel" id="p-1" aria-labelledby="aba-1"><p>[[Conteúdo do grupo 1.]]</p></div>
+      <div class="painel-aba" role="tabpanel" id="p-2" aria-labelledby="aba-2" hidden><p>[[Conteúdo do grupo 2.]]</p></div>
+    </section>
+
+    <section class="secao m">
+      <div class="secao__cab">
+        <h2 class="t-titulo">[[Título da lista]]</h2>
+      </div>
+      <div class="lista-lado" data-lista-lado>
+        <article class="cartao"><div class="cartao__foto"></div><p>[[Item 1]]</p></article>
+        <article class="cartao"><div class="cartao__foto"></div><p>[[Item 2]]</p></article>
+        <article class="cartao"><div class="cartao__foto"></div><p>[[Item 3]]</p></article>
+        <article class="cartao"><div class="cartao__foto"></div><p>[[Item 4]]</p></article>
+        <article class="cartao"><div class="cartao__foto"></div><p>[[Item 5]]</p></article>
+      </div>
+      <div class="lista-lado__setas" data-setas>
+        <button class="bt-ic" type="button" aria-label="Anterior"><svg class="ic" aria-hidden="true"><use href="#ic-volta"/></svg></button>
+        <button class="bt-ic" type="button" aria-label="Próximo"><svg class="ic" aria-hidden="true"><use href="#ic-seta"/></svg></button>
+      </div>
+    </section>
+
+    <section class="secao m">
+      <div class="secao__cab">
+        <h2 class="t-titulo">[[A última seção: o rodapé sobe por cima dela]]</h2>
+      </div>
+    </section>
+  </main>
+<!--fim-->
+</body>
+</html>
