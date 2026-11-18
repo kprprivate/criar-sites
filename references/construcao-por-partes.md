@@ -1,6 +1,6 @@
 # Planejar e construir em ordem
 
-Etapas 5 e 6 do caminho. O padrão visual já existe: agora ele vira seções, de cima para baixo, uma por vez. Os dois modos de trabalho estão no `SKILL.md`: acompanhado (padrão) e liberado.
+Etapas 5 e 6 do caminho. O padrão visual já existe, com o mundo do site aprovado: agora ele vira seções, de cima para baixo, uma por vez, todas dentro do mesmo lugar. Os dois modos de trabalho estão no `SKILL.md`: acompanhado (padrão) e liberado.
 
 ## 1. Planejar os blocos
 
@@ -9,13 +9,14 @@ Antes da primeira seção, responder na tabela de blocos de `docs/ESTADO.md`: qu
 - Um bloco é um resultado pequeno e revisável: uma seção, uma tela ou um trecho de jornada. Elementos inseparáveis podem ir juntos, como header e abertura.
 - Em redesign, cruzar a tabela com `docs/INVENTARIO.md`: nada do site antigo fica sem lugar.
 - Dar a cada página o arquétipo do que ela é ([padroes-de-marca.md](padroes-de-marca.md#cada-página-com-a-sua-forma)).
+- Marcar o arco na tabela: onde fica o momento forte, o que a abertura promete e como o fecho rima com ela. E dizer, em cada bloco do meio, o que do mundo aparece nele (moldura, material, tratamento de imagem, voz): é no meio que o mundo costuma sumir ([mundo-do-site.md](mundo-do-site.md#onde-se-erra)).
 - Não inventar kits, ofertas, avaliações ou mídia para preencher a sequência.
 
 **Ponto de partida para site de marca**, ajustando ao pedido e ao que existir:
 
 1. Header, menu do celular e abertura (com faixa de anúncio, se houver), com a ação principal na primeira tela.
 2. A vitrine ou o conteúdo principal, com a unidade (cartão de produto, projeto, serviço) na linguagem da marca.
-3. A seção-assinatura.
+3. O protagonista em cena (a seção-assinatura), se o mundo pedir uma.
 4. O que prova e o que explica: diferenciais, marcas, resultado, como funciona.
 5. A ação principal do negócio: comprar, agendar, pedir orçamento, vender.
 6. Rodapé que sobe, voltar ao topo e botões fixos.
@@ -38,9 +39,9 @@ Registrar em `docs/ESTADO.md`, sem documento duplicado: bloco atual, último fee
 
 ## 3. Construir e mostrar
 
-- **Link em tempo real desde o início do primeiro bloco** (`npm run dev`), sem esperar nada ficar pronto. Avisar que ele só abre nesta máquina e o que ainda não funciona.
+- **O link local já está no ar desde a etapa 1** (`npm run dev`): o usuário viu o dossiê, o mundo e o guia nele, e vê cada bloco nascer. Se o servidor caiu, subir de novo antes de qualquer coisa. Dizer que o link só abre nesta máquina e o que ainda não funciona. Nada de Artifact nem de endereço público para mostrar bloco.
 - Conteúdo representativo e real, com comprimentos plausíveis. Distinguir dado real, provisório e integração simulada.
-- Ver a captura de cada bloco, em tela grande e pequena, antes de mostrar. Comparar com os blocos vizinhos.
+- Ver a captura de cada bloco, em tela grande e pequena, antes de mostrar. Comparar com os blocos vizinhos e com a abertura: o bloco ainda é o mesmo lugar?
 - Rodar os testes do que mudou: `node tools/testa-tudo.mjs <pasta> home 360x740,1366x700` é rápido. A bateria inteira fica para o fim ou para o segundo plano.
 - Página ou estado novo entra em `tools/testes.config.mjs` no mesmo bloco, e fluxo novo em `tools/testa-fluxos.mjs`.
 - Decisão vira regra na hora, no `CLAUDE.md` do projeto.
@@ -68,7 +69,7 @@ Pedir uma avaliação específica quando útil: hierarquia, tom, densidade, comp
 - **Pedido de correção:** ajustar e mostrar de novo. Não libera o próximo.
 - **Nova preferência:** aplicar no alcance pedido; mostrar quando afetar partes aprovadas. Se parecer valer para todo site, anotar em "Para a skill".
 - **Mudança de ordem:** atualizar a tabela.
-- **Correção de um fato:** corrigir em todo lugar em que ele foi escrito, inclusive no dossiê e no guia publicados, e dizer que corrigiu.
+- **Correção de um fato:** corrigir em todo lugar em que ele foi escrito, inclusive no dossiê e no guia, e dizer que corrigiu.
 
 Se o bloco foi aprovado sem indicar avanço, confirmar em uma linha qual é o próximo, sem fazer.
 

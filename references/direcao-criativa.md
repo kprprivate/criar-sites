@@ -18,10 +18,12 @@ Registrar também o que não transferir: personagens, ilustrações, composiçã
 
 Partir da marca existente, do produto, do conteúdo, do ambiente e da personalidade desejada. Preservar regras consolidadas quando o projeto já tiver identidade. Quando faltar identidade, propor uma direção provisória e mostrar sua aplicação antes de expandi-la.
 
+Decidir de cima para baixo, em quatro escalas: **o mundo** (que lugar é esta página: superfície, moldura, material, luz, o que a rolagem faz), **o arco da página** (ritmo, momento forte, abertura que rima com o fecho), **o objeto** (o protagonista no palco) e, por último, **a peça** (botão, link, campo), que herda do resto e pode ser simples. Uma regra geradora que só alcança a peça dá uma página comum com enfeite. Método e exemplos: [mundo-do-site.md](mundo-do-site.md).
+
 Para cada ideia geradora, preencher:
 
 - **Origem:** qual atributo real do projeto sustenta a ideia.
-- **Expressão:** como aparece em composição, forma, tipografia, cor ou interação.
+- **Expressão:** como aparece na página inteira (estrutura, moldura, material, luz, ritmo) e, depois, em forma, tipografia, cor ou interação.
 - **Aplicação:** onde a ideia ajuda a experiência.
 - **Limite:** onde deve ser discreta ou deixar de aparecer.
 
@@ -31,10 +33,11 @@ Definir o mínimo necessário para construir a amostra:
 
 | Dimensão | Decisão a tornar concreta |
 |---|---|
+| Mundo | O que a página é, o que fica fixo, de que é feita, como é iluminada, o que a rolagem faz |
 | Tipografia | Papéis, contraste entre níveis, legibilidade e comportamento com textos longos |
 | Cor | Fundo, conteúdo, destaque, ação e estados; evitar depender só da cor para comunicar |
 | Composição | Densidade, alinhamentos, respiro, largura de leitura e proporção entre elementos |
-| Componentes | Botões, links, campos, cartões e estados coerentes com a mesma linguagem |
+| Componentes | Botões, links, campos, cartões e estados coerentes com o mundo; neutros quando ele já diz tudo |
 | Imagem | Enquadramento, luz, textura, escala, tratamento e relação com o texto |
 | Movimento | Funções permitidas, intensidade e alternativa estática |
 
@@ -98,7 +101,7 @@ Não transformar conteúdo preso, WebGL, vídeo automático ou efeitos de cursor
 
 ### Linguagem de interação própria
 
-Sites profissionais têm movimentos reconhecíveis. Os gestos da marca, com nome, origem e limite, são decididos no padrão visual, antes da primeira seção, e demonstrados no guia vivo: [padrao-visual.md](padrao-visual.md#7-os-gestos). Antes de criar um efeito novo, perguntar se ele já não é um deles.
+Sites profissionais têm movimentos reconhecíveis, mas o que os torna reconhecíveis é o lugar inteiro; o movimento o serve. Os gestos da marca, com nome, origem e limite, são decididos no padrão visual, depois do mundo e antes da primeira seção, e demonstrados no guia vivo: [padrao-visual.md](padrao-visual.md#8-os-gestos). Antes de criar um efeito novo, perguntar se ele já não é um deles.
 
 ### Padrões de movimento para sites de marca
 
@@ -131,5 +134,7 @@ Usar por padrão, salvo motivo do projeto:
 Ver a amostra em movimento e em tamanhos relevantes. Identificar o defeito com localização e consequência: “o texto secundário compete com o preço” é útil; “falta impacto” ainda precisa ser traduzido.
 
 Perguntar se a pessoa entende o assunto e o próximo passo; se o conteúdo determina a composição; se os detalhes pertencem à mesma linguagem; e se a identidade continua reconhecível sem depender de um único efeito.
+
+Fazer o **teste do recorte** na amostra: capturar a abertura e uma seção do meio com logo e texto escondidos e os botões em cinza. Se não dá para dizer de que marca é, ou se o meio parece de outro site, a identidade está só no enfeite: voltar ao mundo antes de expandir ([roteiro](qualidade.md#o-mundo-do-site)).
 
 Corrigir primeiro os problemas que comprometem direção, entendimento e tarefa. Registrar a decisão e seu alcance. Expandir quando a amostra puder orientar as próximas telas, sem exigir que todo detalhe secundário esteja finalizado.

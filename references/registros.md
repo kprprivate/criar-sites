@@ -9,7 +9,8 @@ Um arquivo só: `docs/ESTADO.md`. O kit traz o modelo. Quem retoma lê este arqu
 | Seção | O que guarda |
 |---|---|
 | Topo | Modo de trabalho (e as palavras da liberação), link local, site no ar, prévia |
-| Publicados | Links do dossiê, do guia e das comparações |
+| Para acompanhar | Links locais do dossiê, do esboço do mundo, do guia e das comparações; o que foi enviado a terceiros, com data |
+| O mundo do site | A frase "esta página é ___", as camadas e o que o lugar proíbe |
 | Blocos | Número, bloco, função e estado |
 | Decisões do usuário | Com data, nas palavras dele quando importar |
 | Decisões minhas, à espera de confirmação | O que decidi sem ele poder responder, para aprovar ou trocar |

@@ -7,6 +7,7 @@ Use antes de expandir a amostra e antes da entrega. Avalie a versão realmente o
 - [Aplicação e estados](#aplicação-e-estados)
 - [O que cada teste prova](#o-que-cada-teste-prova)
 - [Conferir à mão (ainda sem detector)](#conferir-à-mão-ainda-sem-detector)
+- [O mundo do site](#o-mundo-do-site)
 - [Olhar de perto](#olhar-de-perto)
 - [Revisão independente](#revisão-independente)
 - [Critérios](#critérios)
@@ -61,6 +62,34 @@ Defeitos medidos em templates profissionais que passam por todos os testes do ki
 
 Cada linha desta tabela é candidata a detector em `olhar.mjs` ([melhorar-a-skill.md](melhorar-a-skill.md)): enquanto não vira, é passo manual.
 
+## O mundo do site
+
+Cinco verificações de identidade, feitas olhando capturas. Rodar no esboço do mundo (`docs/guia/mundo.html`), no guia e de novo com a home montada, no computador e no celular. O que é mundo e por que estes testes: [mundo-do-site.md](mundo-do-site.md#testes).
+
+```js
+// roteiro curto, a partir de tools/olhar.mjs
+const j = await abre({ w: 1440, h: 900, saida: ".capturas/mundo" });
+await j.ir("/");
+await j.recorte();                       // esconde texto e logo
+await j.foto("recorte-abertura");
+await j.ate("main > section:nth-of-type(5)"); await j.foto("recorte-meio");   // ou j.rola(metade da altura)
+await j.recorte({ botoes: true });       // e pinta todo botão de cinza, sem forma nem hover
+await j.foto("neutro-meio"); await j.rola(0); await j.foto("neutro-abertura");
+await j.fecha();
+```
+
+| Verificação | O que olhar | Reprova quando |
+|---|---|---|
+| **Recorte** | `recorte-abertura` e `recorte-meio`, lado a lado, sem logo nem texto | Não dá para dizer de que marca é; ou as duas parecem de sites diferentes |
+| **Botões neutros** | `neutro-abertura` e `neutro-meio` contra as duas de cima | A identidade sumiu junto com a forma e o hover dos botões: a ideia está na escala da peça |
+| **Meio** | A quinta seção (ou a metade da página) sozinha | O mundo só existe na abertura e no fecho; o meio tem o esqueleto do kit |
+| **Efeito desligado** | A abertura sem WebGL e com movimento reduzido (linhas "Página sem WebGL" e "Movimento reduzido" acima) | Sem o efeito, sobra uma página comum: era papel de parede |
+| **Troca** | Outro nome e outro logo na mesma captura | Serviria para qualquer empresa do setor |
+
+Quem julga melhor é quem não fez: dar as capturas `recorte-*` e `neutro-*` à [revisão independente](#revisão-independente), sem dizer a marca, e pedir que descreva que lugar é aquele. Se a descrição não lembra a frase "esta página é ___", o mundo ainda não está na tela.
+
+Em painel e site de conteúdo valem o recorte e o meio; o que se procura é moldura, tipografia, ritmo e densidade, não efeito.
+
 ## Olhar de perto
 
 Antes de mostrar, cada componente que mudou se julga de perto, nunca só na página inteira reduzida: ali um cartão de 100 px parece certo mesmo quando está esquisito.
@@ -86,7 +115,7 @@ Ao fechar um conjunto de páginas, pedir uma revisão a um agente de contexto li
 
 - **Observar:** relação entre público, proposta e linguagem visual; distinção em relação às referências; consistência entre tipografia, cor, composição, imagens e interação.
 - **Evidência:** amostra implementada em contexto, screenshots representativos, referências identificadas e justificativas associadas a decisões visíveis.
-- **Atende quando:** a proposta é compreensível, as decisões formam um sistema utilizável nas outras telas e a identidade não depende apenas de trocar o logo de um modelo. Descreva o julgamento estético com exemplos; não o apresente como medição objetiva.
+- **Atende quando:** a proposta é compreensível, as decisões formam um sistema utilizável nas outras telas e a identidade não depende apenas de trocar o logo de um modelo, nem só de botão, hover e fundo: passa no recorte, nos botões neutros e no meio ([O mundo do site](#o-mundo-do-site)). Descreva o julgamento estético com exemplos; não o apresente como medição objetiva.
 
 ### 2. Acabamento visual
 

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>O mundo de {{NOME}}</title>
+<!-- O esboço do mundo: a página inteira, em tela cheia, antes de cor, letra e botão. É a primeira coisa que o usuário aprova.
+     Abrir em http://127.0.0.1:{{PORTA}}/docs/guia/mundo.html (npm run dev). Contrato: references/mundo-do-site.md, na skill.
+     Só três cenas: a abertura, uma seção do meio e o fecho, com texto real e curto. Sem componentes: o botão é cinza de propósito.
+     O que se decide aqui é o lugar: o que fica fixo, a moldura, o material do vão entre as seções, a luz, a escala e o que a
+     rolagem faz. Este arquivo vem em cinza e sem forma: troque a estrutura inteira, não só os [[...]]. -->
+<link rel="stylesheet" href="marca.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--fundo); color: var(--tinta); }
+body { font: 400 16px/1.58 var(--corpo); overflow-x: clip; }
+p { margin: 0; max-width: 46ch; }
+/* [[O que fica fixo enquanto o resto passa: moldura, aba, fio lateral, faixa. Se nada fica, apagar.]] */
+.fixo { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+.cena { position: relative; display: grid; align-content: end; gap: 18px; min-height: 100svh; padding: clamp(20px, 4vw, 64px); }
+/* [[O vão entre as seções: espaço, fio, textura, degrau. É onde o material do mundo mais aparece.]] */
+.cena + .cena { border-top: 1px solid var(--fio-cor); }
+.cena--abre { background: var(--fundo-heroi); color: var(--texto-heroi); }
+.cena--fecha { background: var(--fundo-rodape); color: var(--texto-rodape); }
+/* [[O palco do protagonista: o objeto, a imagem ou a atividade que a pessoa veio ver.]] */
+.palco { min-height: 38svh; background: var(--nevoa); }
+.neutro { display: inline-block; padding: 12px 18px; background: #8a8a8a; color: #fff; font: 500 14px/1 var(--corpo); text-decoration: none; }
+.nota { position: fixed; left: 12px; bottom: 12px; z-index: 9; padding: 8px 12px; background: var(--tinta); color: var(--fundo); font: 500 13px/1.2 var(--corpo); text-decoration: none; }
+</style>
+
+<div class="fixo" aria-hidden="true"></div>
+
+<main>
+  <section class="cena cena--abre">
+    <div class="palco" aria-hidden="true"></div>
+    <h1 class="t-mostra">[[A frase de abertura, real.]]</h1>
+    <p>[[Uma linha de apoio.]]</p>
+    <p><a class="neutro" href="#meio">[[Ação principal]]</a></p>
+  </section>
+
+  <section class="cena" id="meio">
+    <span class="t-rotulo">[[Rótulo na voz deste lugar]]</span>
+    <h2 class="t-titulo">[[Uma seção do meio: o mundo continua aqui, sem a abertura por perto?]]</h2>
+    <p>[[Texto real e curto. Uma imagem com o tratamento único, se houver imagem.]]</p>
+  </section>
+
+  <section class="cena cena--fecha">
+    <h2 class="t-titulo">[[O fecho: o que da abertura volta, e mudado como.]]</h2>
+    <p><a class="neutro" href="#">[[O convite final]]</a></p>
+  </section>
+</main>
+
+<a class="nota" href="./">Esboço do mundo · voltar ao guia</a>
+</html>

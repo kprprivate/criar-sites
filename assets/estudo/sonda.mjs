@@ -1,7 +1,7 @@
 // Sonda de referências: abre, mede e filma sites no Chrome sem interface, via DevTools Protocol, sem dependências (Node 22+).
 //   node sonda.mjs <sites.json> <pasta-saida> [--mode triage|deep|filme|fotos] [--only a,b] [--conc 3]
 // sites.json: [{ "slug": "x", "url": "https://...", "pages": { "pdp": "https://...", "lista": "https://..." }, "portao": "Enter", "esperaPortao": 4200, "esperaExtra": 2000 }]
-// triage: abertura, rolagem em quadros, medições e celular (rápido, para filtrar).
+// triage: quadros da abertura (a-0 a a-4, os primeiros 2,3 s), rolagem em quadros (d-00 em diante), medições e celular (rápido, para filtrar).
 // deep:   tudo do triage + vídeo (rolagem e hover), quadros do hover em câmera lenta e leitura do CSS antes e depois, páginas extras e celular.
 // filme:  só uma rolagem limpa de ~15 s, no computador e no celular (clip-*.mp4), para o dossiê. Precisa de ffmpeg.
 // fotos:  só as páginas indicadas em "pages", para comparar o tratamento das fotos.
@@ -492,7 +492,15 @@ async function roda(site) {
       let pararFilme = null;
       if (MODE === "deep") pararFilme = iniciarFilme(cdp, dirFilme);
       const status = await abrir(cdp, site.url);
-      await sleep(MODE === "deep" ? 3200 : 2600);
+      // A abertura: cinco quadros dos primeiros segundos (a-0 a a-4), antes de qualquer espera. Carregador e animação de
+      // entrada já acabaram quando o d-00 é tirado; sem estes quadros, o estudo não vê como o site abre.
+      let gasto = 0;
+      for (const [i, espera] of [0, 350, 450, 600, 900].entries()) {
+        await sleep(espera);
+        gasto += espera;
+        await shot(cdp, join(out, `a-${i}.jpg`), null, 60).catch(() => {});
+      }
+      await sleep(Math.max(0, (MODE === "deep" ? 3200 : 2600) - gasto));
       rel.status = status();
       const a1 = await cdp.eval(DISMISS);
       if (a1?.length) rel.acoes.push(...a1);

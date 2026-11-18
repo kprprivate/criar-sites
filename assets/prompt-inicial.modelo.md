@@ -5,7 +5,7 @@
      e o que já foi visto, marca hipóteses como hipóteses e tira os blocos que não se aplicam. Salvar em docs/PROMPT-INICIAL.md.
      Os colchetes são o que preencher; os blocos [OPCIONAL] saem quando não servem. -->
 
-Vamos [fazer / refazer] o site [de quem ou do quê], seguindo a skill: entender a marca, investigar o nicho, ver o que a marca já tem, criar o padrão visual e só então construir, seção por seção.
+Vamos [fazer / refazer] o site [de quem ou do quê], seguindo a skill: entender a marca, investigar o nicho, ver o que a marca já tem, criar o padrão visual (primeiro o mundo do site, que lugar é a página; as peças por último) e só então construir, seção por seção.
 
 ## Projeto e materiais
 
@@ -21,7 +21,7 @@ Vamos [fazer / refazer] o site [de quem ou do quê], seguindo a skill: entender 
 
 [Quero acompanhar a construção aos poucos: ao terminar cada parte, mostre a versão e espere minha avaliação. / Pode trabalhar sem pausas até [alcance].]
 
-- Quero o link local em tempo real desde o início da construção.
+- Quero acompanhar ao vivo: suba o link local (`npm run dev`) assim que o projeto existir e deixe no ar. O dossiê, o esboço do mundo e o guia aparecem nesse mesmo link. Não publique como Artifact nem em endereço público sem eu pedir.
 - Decisão vira regra na hora: no `CLAUDE.md`, no estado do projeto e no guia vivo.
 
 ## O que é o site, e de quê
@@ -50,12 +50,12 @@ Vamos [fazer / refazer] o site [de quem ou do quê], seguindo a skill: entender 
 
 ## [OPCIONAL] Componentes do React Bits
 
-Podemos usar elementos do React Bits (https://reactbits.dev) e do React Bits Pro (https://pro.reactbits.dev); tenho conta [plano]. Siga `references/react-bits.md` da skill:
+Podemos usar elementos do React Bits (https://reactbits.dev) e do React Bits Pro (https://pro.reactbits.dev); [tenho a chave do Pro, plano Starter / Pro / Ultimate] [não tenho chave: use o grátis]. Siga `references/react-bits.md` da skill:
 
-- use como matéria-prima, adaptada à nossa identidade, e nunca com a cara da demo;
+- primeiro o mundo da marca; o componente é reserva e atalho para executar, adaptado à nossa identidade, e nunca com a cara da demo;
 - um efeito por função;
 - versão parada com movimento reduzido.
-- **Chave de licença:** fica no `.env.local`, que eu preencho; nunca a peça nem a escreva em código ou documento.
+- **Chave de licença:** crie o `.env.local` com a linha vazia `REACTBITS_LICENSE_KEY=` e me avise; eu colo a chave no arquivo. Nunca a leia nem a escreva em código, documento ou conversa.
 
 ## Destino e stack
 
@@ -68,4 +68,4 @@ Podemos usar elementos do React Bits (https://reactbits.dev) e do React Bits Pro
 
 ## Comece agora
 
-Comece pela etapa 1 e siga para o estudo do nicho. Me mostre o dossiê quando estiver pronto, e me traga só as perguntas que mudem a direção.
+Comece pela etapa 1, suba o link local e siga para o estudo do nicho. Me mostre o dossiê no link local enquanto ele é montado, e me traga só as perguntas que mudem a direção.

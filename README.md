@@ -12,6 +12,7 @@ A skill está em português do Brasil.
 |---|---|
 | `SKILL.md` | O caminho completo, em ordem. É o que o agente lê primeiro |
 | `references/` | Um arquivo por etapa ou assunto (estudo do nicho, padrão visual, qualidade, React Bits, publicar prévia, tema Shopify) |
+| `references/mundo-do-site.md` | O que torna um site reconhecível: o lugar inteiro (moldura, material, luz, rolagem), decidido antes do botão |
 | `references/react-bits-templates.md` | O método extraído dos 18 templates do React Bits Pro: regras, defeitos medidos e receitas de mecânica |
 | `assets/kit/` | Kit inicial de site (Vite), em cinza de propósito: o que é da marca vem marcado com `[[...]]` |
 | `assets/estudo/` | Ferramentas de estudo de referências, entre elas a sonda que abre, mede e filma sites |
@@ -146,7 +147,8 @@ A skill em si não precisa de nada. As ferramentas de `assets/` pedem:
 
 A skill ensina a usar o React Bits e o React Bits Pro, mas **não inclui nenhum código deles**. Quem for usar os blocos e componentes do Pro precisa da **própria licença**:
 
-- a chave vai no `.env.local` do projeto, que fica no `.gitignore`. Nunca em código, documento ou conversa;
+- a skill pergunta logo no começo se você tem a chave e qual o plano, e cria o `.env.local` (que fica no `.gitignore`) com a linha vazia para você colar. A chave nunca vai em código, documento ou conversa;
+- os componentes entram como reserva e atalho: a identidade do site é desenhada a partir da marca, não escolhida numa vitrine;
 - a skill oficial `react-bits-pro` instalada no computador costuma ficar velha. O passo a passo para atualizá-la está em `references/react-bits.md`.
 
 Os templates do Pro são produto pago. Os arquivos `references/react-bits.md` e `references/react-bits-templates.md` descrevem só técnica, proporção e medida, sem trechos deles. Se você adaptar um template, o código dele não vai para um repositório público.

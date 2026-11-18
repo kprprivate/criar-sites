@@ -24,10 +24,18 @@ export function destino(caminho) {
 
 const INTERNO = /^\/(@|src\/|node_modules\/)/;
 
-function reescreve(raiz) {
+// No servidor local, o guia (docs/guia/) lê o marca.css e o marca.js direto de src/: abre em /docs/guia/ e muda junto com o
+// site, sem `npm run guia`. A cópia só é precisa para levar o guia para fora desta máquina.
+const GUIA_VIVO = { "/docs/guia/marca.css": "/src/css/marca.css", "/docs/guia/marca.js": "/src/js/marca.js" };
+
+function reescreve(raiz, vivo = false) {
   return (req, res, next) => {
     const [caminho, resto] = (req.url || "").split("?");
     const q = resto ? `?${resto}` : "";
+    if (vivo && GUIA_VIVO[caminho]) {
+      req.url = GUIA_VIVO[caminho] + q;
+      return next();
+    }
     const alvo = destino(caminho);
     if (alvo) {
       req.url = alvo + q;
@@ -48,7 +56,7 @@ export function rotas() {
   return {
     name: "rotas",
     configureServer(server) {
-      server.middlewares.use(reescreve(process.cwd()));
+      server.middlewares.use(reescreve(process.cwd(), true));
     },
     configurePreviewServer(server) {
       server.middlewares.use(reescreve(join(process.cwd(), "dist")));

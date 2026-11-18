@@ -117,9 +117,10 @@ if (!flag("sem-instalar")) {
 console.log(`
 Pronto. Próximos passos:
   cd "${pasta}"
-  npm run dev                      deixar no ar: http://127.0.0.1:${porta}/ é o link que o usuário acompanha
+  npm run dev                      agora, e deixar no ar: http://127.0.0.1:${porta}/ é o link que o usuário acompanha
   docs/ESTADO.md                   blocos, decisões e pendências
-  docs/guia/index.html             o padrão visual, antes da primeira seção
+  docs/guia/mundo.html             o mundo do site em tela cheia: http://127.0.0.1:${porta}/docs/guia/mundo.html
+  docs/guia/index.html             o padrão visual, antes da primeira seção: http://127.0.0.1:${porta}/docs/guia/
   src/css/marca.css                tokens e componentes: vem em cinza até a marca entrar
   tools/testes.config.mjs          páginas e estados que os testes abrem
   npm run pendencias               o que ainda está [[provisório]]`);

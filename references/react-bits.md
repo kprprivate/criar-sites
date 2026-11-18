@@ -1,6 +1,6 @@
 # React Bits e React Bits Pro
 
-Bibliotecas de componentes animados para React: fundos, efeitos de texto, cursor, cartões, galerias e seções prontas. Nesta skill, servem como **matéria-prima de movimento e de peças**. A identidade continua sendo do projeto ([direcao-criativa.md](direcao-criativa.md)).
+Bibliotecas de componentes animados para React: fundos, efeitos de texto, cursor, cartões, galerias e seções prontas. Nesta skill, são **reserva e atalho**: matéria-prima de movimento e de peças para executar o que a marca pede. A identidade e o mundo do site continuam sendo do projeto ([mundo-do-site.md](mundo-do-site.md), [direcao-criativa.md](direcao-criativa.md)).
 
 Componentes e blocos levantados em out/2026; templates, em 17/11/2026, nas páginas oficiais. Os números mudam; conferir na hora de usar.
 
@@ -8,13 +8,31 @@ O que os templates do Pro ensinam sobre como construir (método, defeitos medido
 
 ## Sumário
 
+- [A chave do Pro](#a-chave-do-pro)
 - [O que cada um oferece](#o-que-cada-um-oferece)
+- [Reserva e atalho, nunca a identidade](#reserva-e-atalho-nunca-a-identidade)
 - [Como usar sem perder a identidade](#como-usar-sem-perder-a-identidade)
 - [Templates do Pro](#templates-do-pro)
 - [Stack](#stack)
 - [Configurar no projeto](#configurar-no-projeto)
 - [Atualizar a skill oficial sozinha](#atualizar-a-skill-oficial-sozinha)
 - [Verificar](#verificar)
+
+## A chave do Pro
+
+**Perguntar logo ao entrar,** na etapa 1 de todo projeto, junto das outras perguntas: "Você tem a chave do React Bits Pro? Qual plano (Starter, Pro ou Ultimate)?". O plano diz o que há para usar (componentes em todos; blocos no Pro e no Ultimate; templates no Ultimate) e pesa na escolha da stack.
+
+A chave é segredo. **Receber só pelo `.env.local`:**
+
+1. Criar o `.env.local` na raiz do projeto com a linha vazia `REACTBITS_LICENSE_KEY=`. Se o arquivo já existe, não sobrescrever: conferir se a linha está lá sem mostrar o valor (`grep -c "^REACTBITS_LICENSE_KEY=" .env.local`) e acrescentar só se faltar.
+2. Garantir `.env.local` no `.gitignore` (o kit já traz).
+3. Pedir ao usuário que **cole a chave no arquivo**, depois do `=`, e avise quando salvar. Não pedir que cole no chat.
+4. Conferir sem ler: `npx shadcn@latest view @reactbits-starter/<item>` responde quando a chave vale; 401 é chave ausente ou errada.
+
+Nunca ler, imprimir (`cat`, `type`, `echo`) nem escrever a chave em código, documento, prompt, registro ou commit. O CLI lê do ambiente. Nas páginas do Pro logadas, a chave aparece na tela: não copiar nem registrar.
+
+- **Se o usuário quiser colar no chat:** avisar em uma linha do risco (a chave fica no histórico da conversa e em registros) e seguir o que ele decidir. Se colar, gravar no `.env.local` e não repetir a chave em resposta nenhuma.
+- **Sem chave:** seguir com o React Bits grátis, que cobre a maior parte das mecânicas, e voltar a perguntar quando um bloco ou componente do Pro fizer diferença de verdade.
 
 ## O que cada um oferece
 
@@ -46,9 +64,21 @@ O que os templates do Pro ensinam sobre como construir (método, defeitos medido
   - receitas (Agency Homepage, Product Launch, SaaS Homepage).
 - **Detalhes de instalação:** importar (ler a linha de `export` do bloco), `"use client"` e pai com tamanho nos componentes WebGL. Estão na skill oficial `react-bits-pro`, que deve estar atualizada (abaixo).
 
+## Reserva e atalho, nunca a identidade
+
+A ordem é fixa: **primeiro o mundo da marca, desenhado pela skill; depois o componente, para executar.** O grátis (`@react-bits`) está sempre disponível; o Pro, com chave.
+
+Pegar um componente quando:
+
+- o efeito próprio sai caro, quebra ou não fecha no prazo;
+- o mundo pede uma mecânica que já existe pronta: campo que reage ao cursor, texto que se parte, fundo em shader, cartões, carrossel, galeria;
+- uma reserva faz falta (a versão que funciona hoje, enquanto a própria amadurece).
+
+Aí: instalar, religar aos tokens e à ideia da marca (abaixo) e seguir. O que o componente nunca faz é decidir que lugar é o site: escolher um efeito na vitrine e procurar um motivo para ele dá papel de parede ([mundo-do-site.md](mundo-do-site.md#mundo-ou-papel-de-parede)). Em site de HTML, CSS e JS puros, a reserva é a receita equivalente escrita à mão ([Stack](#stack)).
+
 ## Como usar sem perder a identidade
 
-- **Escolher pelo papel, não pela vitrine:** primeiro a linguagem de interação do projeto, depois o efeito que a serve. Perguntar: "como isso fica com os movimentos da marca?".
+- **Escolher pelo papel, não pela vitrine:** primeiro o mundo e a linguagem de interação do projeto, depois o efeito que os serve. Perguntar: "que camada do mundo isto executa?" e "como fica com os movimentos da marca?".
 - **Adaptar sempre:**
   - cores dos tokens do projeto, tipografia da marca, tempo e easing da linguagem de movimento;
   - o texto real;
@@ -103,11 +133,7 @@ React Bits é **React**:
    }
    ```
 
-3. **Chave de licença:**
-   - o **usuário** coloca no `.env.local` da raiz: `REACTBITS_LICENSE_KEY=...`;
-   - o `.env.local` fica no `.gitignore`;
-   - nunca pedir a chave na conversa, nunca ler o arquivo, nunca escrever a chave em código, documento ou prompt. O CLI lê do ambiente.
-   - Nas páginas do Pro logadas, a chave aparece na tela: não copiar nem registrar.
+3. **Chave de licença:** pedida logo ao entrar e recebida só pelo `.env.local` ([A chave do Pro](#a-chave-do-pro)). O agente cria o arquivo com a linha vazia `REACTBITS_LICENSE_KEY=`, o usuário cola a chave nele, e ninguém a lê, imprime ou escreve em outro lugar.
 4. **MCP** (buscar, listar e instalar pedindo em texto):
    - o servidor é sempre o mesmo, `npx shadcn@latest mcp`, rodando na raiz do projeto. Muda só onde cada agente guarda a configuração:
      - **Claude Code:** `npx shadcn@latest mcp init --client claude` grava o `.mcp.json` do projeto. Reiniciar e conferir em `/mcp` que o `shadcn` está `Connected`.

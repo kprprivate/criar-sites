@@ -198,7 +198,7 @@ Sintoma: o site sai na fonte do sistema (Segoe UI no Windows, San Francisco no M
 Sintoma: com o JS lento ou quebrado, título e seções não aparecem; rolando rápido, telas inteiras vazias; captura e robô de busca veem a página pela metade. Medido: de 22 a 92 elementos com `opacity: 0` no HTML de nove templates (em dois, o h1), e 4 de 13 quadros totalmente pretos numa rolagem.
 
 - **Causa:** o estado inicial da animação de entrada está no HTML ou no CSS que vale antes do JS.
-- **Como fazer:** o conteúdo existe visível; quem esconde é o JS, na hora em que vai animar. O kit já faz assim (`src/js/revela.js` põe o atributo que esconde). Esconder por CSS antes do JS só com a `animation` de segurança que mostra sozinha ([título que chega borrado](padrao-visual.md#10-receitas-de-técnica)). O título principal se lê no primeiro quadro. Bloco alto entra por deslocamento ou a partir de opacidade parcial, com margem de disparo folgada.
+- **Como fazer:** o conteúdo existe visível; quem esconde é o JS, na hora em que vai animar. O kit já faz assim (`src/js/revela.js` põe o atributo que esconde). Esconder por CSS antes do JS só com a `animation` de segurança que mostra sozinha ([título que chega borrado](padrao-visual.md#11-receitas-de-técnica)). O título principal se lê no primeiro quadro. Bloco alto entra por deslocamento ou a partir de opacidade parcial, com margem de disparo folgada.
 - **Contador:** o valor final vai no HTML e a contagem anima só a camada visual, escondida do leitor de tela. Contador que nasce em zero é zero para quem não roda JS, e captura no meio da contagem mostra número errado.
 - **Conferir:** com o JS desligado, nenhum texto de `main` tem opacidade zero ou `visibility: hidden`; e uma rolagem rápida capturada não tem quadro vazio.
 

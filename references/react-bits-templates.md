@@ -44,11 +44,13 @@ Só para achar um caso. Todos declaram Next.js, React, TypeScript, Tailwind v4 e
 
 Em uma frase: **escolher um objeto ou atividade do produto para ser o palco, construir esse único gesto bem, ligá-lo a um número de progresso, e gastar o resto em tipografia contida, tokens e reservas**. Cada regra traz o que foi medido e como aplicar fora de SaaS.
 
+Estas regras dizem **como construir**. **Que lugar construir** (o mundo do site, do qual o objeto, o efeito e o botão descendem) se decide antes, em [mundo-do-site.md](mundo-do-site.md): relidos por essa lente, os 18 se distinguem pela moldura, pelo material, pela luz e pelo que a rolagem faz, e quase nunca pelo botão.
+
 ### Identidade
 
 **1. O efeito carrega o produto.** Antes de escolher um efeito, perguntar que objeto ou atividade do negócio pode ser a abertura. Nos templates antigos o efeito é fundo (fluido, partículas) e o título tem de 84 a 115 px. Nos novos, a tela do notebook mostra o app, a paisagem hospeda uma área de teste, a janela do produto mora dentro do céu, e o título cai para 53 a 80 px (num deles, o h1 de 53 px é menor que o h2 de 60 px). Fora de SaaS: a lata, o prato, a planta, um documento que se monta. Efeito que não mostra o que a marca faz é enfeite.
 
-**2. Uma unidade mínima, em todas as camadas.** A ideia geradora ([padrao-visual.md](padrao-visual.md#4-a-ideia-geradora)) vira uma medida que se repete. Caso: um degrau de 4 px gera o canto do botão, do avatar, a grade do ícone, os glifos, o fundo e o shader do `8-bit`; uma linha de 1 px gera trilhos, bordas e alças de 7 px no `wireframe`; um chanfro de 9, 12 e 28 px (conforme a peça) e cruzes de canto no `security`. Conferir a ideia camada por camada: letra, cor, borda e forma, ícone, imagem, textura, movimento, hover, rótulo, abertura e fecho. Camada em que a ideia não aparece é camada genérica.
+**2. Uma unidade mínima, em todas as camadas.** A ideia geradora ([padrao-visual.md](padrao-visual.md#5-a-ideia-geradora)) vira uma medida que se repete. Caso: um degrau de 4 px gera o canto do botão, do avatar, a grade do ícone, os glifos, o fundo e o shader do `8-bit`; uma linha de 1 px gera trilhos, bordas e alças de 7 px no `wireframe`; um chanfro de 9, 12 e 28 px (conforme a peça) e cruzes de canto no `security`. Conferir a ideia camada por camada: letra, cor, borda e forma, ícone, imagem, textura, movimento, hover, rótulo, abertura e fecho. Camada em que a ideia não aparece é camada genérica.
 
 **3. A estética mora nos objetos e nas bordas; o texto corrido fica neutro.** O `8-bit` não usa fonte de pixel: título e parágrafo são sans comum, e o pixel está em botão, ícone, marcador e fundo. Vale para qualquer tema forte (retrô, técnico, artesanal): o tema vai para moldura, botão, ícone, marcador, separador e rótulo curto. Parágrafo de 16 a 18 px, entrelinha de 1,5 a 1,6, sem estilização.
 
@@ -172,9 +174,9 @@ A técnica em palavras, sem o desenho. Servem à ideia da marca da vez. Todas pr
 
 ## Escolher e adaptar um template ou bloco
 
-Dentro do fluxo da skill, o template entra **depois** do padrão visual (etapa 4), nunca no lugar dele. Instalação e chave: [react-bits.md](react-bits.md).
+Dentro do fluxo da skill, o template entra **depois** do padrão visual (etapa 4), nunca no lugar dele: é reserva e atalho de execução, e o mundo do site já está decidido quando ele chega ([mundo-do-site.md](mundo-do-site.md#react-bits-reserva-e-atalho)). Instalação e chave: [react-bits.md](react-bits.md).
 
-1. **Escolher pela mecânica, não pela aparência.** Com a ideia geradora e os gestos definidos, procurar no mapa o caso cuja técnica serve àquela ideia (uma cena presa que mostra mudança de estado, um efeito em doses, um produto em HTML). Se a escolha é "porque é bonito", ainda falta a ideia.
+1. **Escolher pela mecânica, não pela aparência.** Com o mundo, a ideia geradora e os gestos definidos, procurar no mapa o caso cuja técnica serve àquele mundo (uma cena presa que mostra mudança de estado, um efeito em doses, um produto em HTML). Se a escolha é "porque é bonito", ainda falta a ideia.
 2. **Separar o que fica do que sai.** Fica: estrutura de seções, mecânica de rolagem, ciclo de vida do canvas, componentes acessíveis. Sai: paleta, fontes, textos, fotos, logos e números de demonstração, e a combinação de assinatura (moldura mais duotone mais ASCII é a identidade de quem a criou). Levar o princípio: "um enquadramento fixo", "um tratamento próprio de foto".
 3. **Trocar o objeto.** Perguntar qual objeto ou atividade **desta** marca ocupa o lugar do que o template mostra (regra 1). Sem resposta, a mecânica não serve.
 4. **Religar aos tokens do projeto:** cores do canvas, curva e durações, raios, a unidade mínima.
@@ -192,6 +194,6 @@ Foi o método que gerou este arquivo; repetir quando sair template novo.
 2. **Rodar a sonda** ([estudo-do-nicho.md](estudo-do-nicho.md#3-triar-com-a-sonda)): `node assets/estudo/sonda.mjs sites.json <saída> --mode triage`, depois `--mode deep` nos que interessam. Olhar todas as capturas, do computador e do celular.
 3. **Medir a fonte aplicada:** no `relatorio.json`, a lista `fontes` e a família calculada dos títulos. Lista vazia com fonte declarada é o defeito número um.
 4. **Capturar o que a sonda não cobre:** tema claro (ela usa o do sistema), WebGL desligado, movimento reduzido e o cursor passando pela abertura.
-5. **Anotar a mecânica em palavras** e separar medido, lido e inferido. Inferido não vira regra.
+5. **Anotar o mundo em uma frase e as camadas** ([quais](mundo-do-site.md#as-camadas-do-mundo)), olhando a rolagem inteira com os botões tapados, e só depois **a mecânica em palavras**. Separar medido, lido e inferido. Inferido não vira regra.
 6. **Perguntar o porquê de cada escolha** (por que o título é pequeno, por que o efeito para ali) e escrever a regra para outro setor. Regra que só serve àquele site fica de fora.
 7. **Procurar os defeitos**, com a tabela acima. O que o template erra ensina tanto quanto o que acerta.

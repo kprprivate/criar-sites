@@ -6,13 +6,13 @@ A ordem é a mesma em qualquer site: entender, investigar, ver o que existe, cri
 
 | Tipo | "A marca" é | "O nicho" é | O padrão visual é | Kit |
 |---|---|---|---|---|
-| Loja | A marca e o catálogo | Lojas premiadas e quem resolve o mesmo modelo de venda | Completo: gestos, cartão, preço, sacola | Sim; Shopify com `--loja` |
-| Landing page | A oferta e quem compra | Landing pages premiadas, do setor e vizinhas | Enxuto, com um gesto forte | Sim |
+| Loja | A marca e o catálogo | Lojas premiadas e quem resolve o mesmo modelo de venda | Completo: o mundo sem cobrir o produto, cartão, preço, sacola | Sim; Shopify com `--loja` |
+| Landing page | A oferta e quem compra | Landing pages premiadas, do setor e vizinhas | Enxuto: o mundo em uma frase e um protagonista forte | Sim |
 | Institucional | A organização, os serviços e o público | Marcas do setor, e de fora dele que resolvam a mesma dúvida | Completo, sem efeito que atrase a informação | Sim |
 | Portfólio | O autor e os trabalhos | Portfólios e estúdios de referência | Os trabalhos são a imagem; a linguagem os emoldura | Sim |
 | Editorial | A voz e os conteúdos | Publicações com leitura excelente | A tipografia é o centro | Sim, ou o CMS do destino |
 | SaaS | O produto e quem decide a compra | Páginas de produto premiadas, e a interface em si | Tokens e componentes usados no site e no produto | `--so-ferramentas`, na stack do produto |
-| Painel ou portal | A tarefa, os dados e as permissões | Ferramentas de trabalho que são referência | Contido: tipografia, densidade, estados, resposta dos controles | `--so-ferramentas`, na stack do sistema |
+| Painel ou portal | A tarefa, os dados e as permissões | Ferramentas de trabalho que são referência | Contido: o mundo fica na moldura, na tipografia, na densidade, nos estados e na resposta dos controles ([como](mundo-do-site.md#em-painel-sistema-e-site-de-conteúdo)) | `--so-ferramentas`, na stack do sistema |
 
 Em painel e ferramenta de uso recorrente, a tarefa manda: sem abertura, sem efeito de primeira visita e sem rolagem suave imposta. O estudo pode ser menor e o padrão, sóbrio, mas a ordem fica: decidir o padrão antes de multiplicar telas.
 

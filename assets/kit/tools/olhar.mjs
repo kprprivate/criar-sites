@@ -150,6 +150,19 @@ export async function abre({ w = 1366, h = 700, celular = false, reduz = false, 
       if (f?.data) writeFileSync(join(saida, nome + ".png"), Buffer.from(f.data, "base64"));
       return true;
     },
+    // O teste do recorte (references/mundo-do-site.md, na skill): esconde o texto e o logo e, com { botoes: true }, pinta todo
+    // botão de cinza, sem forma nem hover. Se a captura ainda diz de que marca é o site, a identidade está na página e não
+    // na peça. Fazer na abertura e numa seção do meio. Recarregar a página (j.ir) desfaz.
+    //   await j.ir("/"); await j.recorte(); await j.foto("recorte-abertura"); await j.recorte({ botoes: true }); await j.foto("neutro-abertura");
+    recorte: ({ botoes = false, logo = ".header__logo, [data-logo]", botao = ".bt, button, [role=button], input[type=submit]" } = {}) => {
+      const lista = botao.split(",").map((b) => b.trim());
+      let css = `*, *::before, *::after, ::placeholder { -webkit-text-fill-color: transparent !important; text-shadow: none !important; } ${logo} { visibility: hidden !important; }`;
+      if (botoes) {
+        css += ` ${lista.join(", ")} { background: #8a8a8a !important; border: 0 !important; border-radius: 6px !important; clip-path: none !important; box-shadow: none !important; outline: 0 !important; transition: none !important; animation: none !important; }`;
+        css += ` ${lista.map((b) => `${b}::before, ${b}::after, ${b} svg`).join(", ")} { display: none !important; }`;
+      }
+      return ev(`(() => { const s = document.createElement("style"); s.textContent = ${JSON.stringify(css)}; document.head.append(s); return true; })()`);
+    },
     // Rola sem o Lenis atrapalhar: para ele, vai e deixa pintar. O Chrome sem interface só pinta quando alguém pede um quadro.
     rola: async (y, { espera = 700 } = {}) => {
       await ev(`(() => { const l = window.LENIS; if (l) { l.scrollTo(${y}, { immediate: true, force: true }); } else { window.scrollTo(0, ${y}); } return window.scrollY; })()`);

@@ -21,7 +21,7 @@ Primeiro ler o que já existe: pedido, pastas, repositório, marca, textos, foto
 | As unidades | A lista de projetos, produtos ou serviços e o que existe de cada uma (material, links, papel do autor, público ou confidencial) |
 | Materiais | Onde estão a marca, os textos, as fotos, os vídeos e os trabalhos; o que é oficial e o que é provisório |
 | Referências | Sites de que gosta e **o que** gosta em cada um, e o que quer evitar |
-| Recursos permitidos | Bibliotecas de componentes ([react-bits.md](react-bits.md)), imagens geradas, fotos reais, fontes com licença |
+| Recursos permitidos | Bibliotecas de componentes, imagens geradas, fotos reais, fontes com licença. Perguntar sempre: "Você tem a chave do React Bits Pro? Qual plano (Starter, Pro ou Ultimate)?". A chave vai só no `.env.local`, nunca no chat nem no prompt ([react-bits.md](react-bits.md#a-chave-do-pro)) |
 | Destino | Onde vai rodar e ser publicado: Shopify ([shopify-por-script.md](shopify-por-script.md)), servidor próprio, hospedagem estática. Também domínio, prévia e quem mantém o conteúdo depois |
 | Limites | Idioma, prazo, o que não pode (alegações, dados de clientes, conteúdo inventado), contrato |
 
@@ -45,12 +45,12 @@ O prompt precisa:
 
 - começar chamando a skill: `/criar-sites` no Claude Code e no Kiro, `$criar-sites` no Codex;
 - dizer onde estão os materiais, sem presumir nomes de arquivo;
-- trazer o modo de trabalho (acompanhado, salvo se o usuário liberar);
+- trazer o modo de trabalho (acompanhado, salvo se o usuário liberar) e o pedido de acompanhar ao vivo: link local no ar desde o primeiro minuto, com o dossiê, o mundo e o guia servidos nele, sem Artifact;
 - trazer as referências com o que se quer de cada uma;
-- dizer os recursos permitidos e as regras deles (React Bits adaptado à identidade, chave fora do código);
+- dizer os recursos permitidos e as regras deles (React Bits como reserva e atalho, adaptado à identidade; se há chave do Pro e qual plano, com a chave só no `.env.local`);
 - trazer o destino e a stack;
 - trazer a sequência inicial de blocos, se já houver;
-- trazer a ordem do método: marca, nicho, o que a marca já tem, padrão visual, seções;
+- trazer a ordem do método: marca, nicho, o que a marca já tem, padrão visual (o mundo do site antes das peças), seções;
 - terminar dizendo o que executar primeiro, sem pedir nova aprovação do prompt.
 
 ## 4. Aprovar e seguir

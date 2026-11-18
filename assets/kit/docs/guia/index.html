@@ -3,8 +3,10 @@
 <title>Identidade {{NOME}}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <!-- O guia vivo: a própria página é a marca. Fica pronto e aprovado antes da primeira seção do site.
-     Usa os mesmos marca.css e marca.js do site: `npm run guia` copia para esta pasta. Para publicar, leve os dois arquivos junto.
-     Troque cada [[...]] e apague o que não se aplicar. Contrato de cada seção: references/padrao-visual.md, na skill. -->
+     Abrir em http://127.0.0.1:{{PORTA}}/docs/guia/ (npm run dev): ali ele lê o marca.css e o marca.js direto de src/ e muda junto.
+     Para levar a outra máquina, `npm run guia` copia os dois arquivos para esta pasta.
+     A ordem é o mundo primeiro (mundo.html, em tela cheia), as peças depois. Troque cada [[...]] e apague o que não se aplicar.
+     Contrato de cada seção: references/padrao-visual.md e references/mundo-do-site.md, na skill. -->
 <link rel="stylesheet" href="marca.css">
 <style>
 html, body { background: var(--fundo); color: var(--tinta); }
@@ -106,6 +108,7 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
 <header class="topo m">
   <span class="t-rotulo">{{NOME}}</span>
   <nav aria-label="Seções do guia">
+    <a class="reta reta--menu t-rotulo" href="#mundo">O mundo</a>
     <a class="reta reta--menu t-rotulo" href="#decisoes">Decisões</a>
     <a class="reta reta--menu t-rotulo" href="#regras">Regras</a>
     <a class="reta reta--menu t-rotulo" href="#ideia">A ideia</a>
@@ -119,12 +122,35 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
 <main>
   <section class="abre m">
     <span class="t-rotulo">Identidade de {{NOME}} · proposta · {{DATA}}</span>
-    <h1 class="t-mostra">[[O nome da ideia.]]</h1>
-    <p class="lead">[[Duas frases: a ideia geradora e onde ela aparece. Precisa sair de algo que só esta marca tem.]]</p>
+    <h1 class="t-mostra">[[Esta página é ___.]]</h1>
+    <p class="lead">[[Duas frases: que lugar é o site desta marca e de onde ele vem. Precisa sair de algo que só ela tem.]]</p>
     <div class="acoes">
-      <a class="bt" href="#botoes"><span>Ver os botões</span></a>
-      <a class="bt bt--vazado" href="#gestos"><span>Ver os gestos</span></a>
+      <a class="bt" href="mundo.html"><span>Abrir o mundo em tela cheia</span></a>
+      <a class="bt bt--vazado" href="#botoes"><span>Ver as peças</span></a>
     </div>
+  </section>
+
+  <section class="sec m" id="mundo">
+    <div class="sec__cab">
+      <span class="t-rotulo">O mundo</span>
+      <h2 class="t-titulo">[[O lugar, antes das peças.]]</h2>
+      <p>O esboço em página inteira está em <a class="reta" href="mundo.html">mundo.html</a>: a abertura, uma seção do meio e o fecho, sem componentes. [[O que os testes mostraram: com o logo e o texto escondidos e os botões em cinza, ainda dá para dizer de quem é? E na seção do meio?]]</p>
+    </div>
+    <div class="tabela"><table>
+      <thead><tr><th>Camada</th><th>A resposta desta marca</th><th>Onde se vê</th></tr></thead>
+      <tbody>
+        <tr><td>Onde acontece</td><td>[[Superfície, moldura, o que fica fixo, onde mora o menu]]</td><td>[[...]]</td></tr>
+        <tr><td>De que é feito</td><td>[[Material e unidade mínima; o que preenche o vão entre as seções]]</td><td>[[...]]</td></tr>
+        <tr><td>Como é iluminado</td><td>[[De onde vem a luz, temperatura, sombra; ou "neutro, de propósito"]]</td><td>[[...]]</td></tr>
+        <tr><td>Escala e câmera</td><td>[[O que é grande, o que é pequeno, o enquadramento]]</td><td>[[...]]</td></tr>
+        <tr><td>O que a rolagem é</td><td>[[Revela, viaja, monta, passa de cena; ou só passa]]</td><td>[[...]]</td></tr>
+        <tr><td>Arco e rima</td><td>[[O momento forte; o que da abertura volta no fecho]]</td><td>[[...]]</td></tr>
+        <tr><td>Protagonista</td><td>[[O objeto ou a atividade que ocupa o palco]]</td><td>[[...]]</td></tr>
+        <tr><td>Imagem</td><td>[[O tratamento único; onde a cor original volta]]</td><td>[[...]]</td></tr>
+        <tr><td>Voz</td><td>[[Rótulos, números, microcópia]]</td><td>[[...]]</td></tr>
+        <tr><td>O que este lugar proíbe</td><td>[[O que nunca aparece nele]]</td><td>[[...]]</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
   <section class="sec m" id="decisoes">
@@ -157,7 +183,7 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
     <div class="sec__cab">
       <span class="t-rotulo">A ideia</span>
       <h2 class="t-titulo">[[O nome da ideia.]]</h2>
-      <p>[[De onde vem: as coisas que já são da marca. Onde aparece: logo, botão, link, seção. Passe o mouse, ou toque no celular.]]</p>
+      <p>[[A frase que o mundo dá, dita como regra. De onde vem: as coisas que já são da marca. Onde aparece: primeiro na página (moldura, vão entre seções, header, luz), depois nas peças.]]</p>
     </div>
   </section>
 
@@ -203,8 +229,8 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
   <section class="sec m" id="botoes">
     <div class="sec__cab">
       <span class="t-rotulo">Botões</span>
-      <h2 class="t-titulo">[[Todos com o mesmo gesto: o nome dele.]]</h2>
-      <p>[[Por que esta forma. O que o estudo mediu nas outras marcas.]] Passe o mouse, use o Tab e toque no celular.</p>
+      <h2 class="t-titulo">[[O que os botões herdam do mundo.]]</h2>
+      <p>[[Raio, altura, letra do rótulo, cor de ação e curva vêm do lugar. Podem ser simples: dizer por quê. O que o estudo mediu nas outras marcas.]] Passe o mouse, use o Tab e toque no celular.</p>
     </div>
     <div class="superficies">
       <div class="sup sup--b"><span class="t-rotulo">Sobre o fundo</span><div class="sup__linha"><a class="bt" href="#botoes"><span>Principal</span></a><a class="bt bt--vazado" href="#botoes"><span>Secundário</span></a><a class="bt bt--p" href="#botoes"><span>Pequeno</span></a></div></div>
@@ -228,15 +254,16 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
   <section class="sec m" id="gestos">
     <div class="sec__cab">
       <span class="t-rotulo">Movimento</span>
-      <h2 class="t-titulo">[[Quantos gestos e um texto. Nada além disso.]]</h2>
-      <p>Antes de criar qualquer efeito novo, a pergunta é: isso já não é um destes?</p>
+      <h2 class="t-titulo">[[Quantos gestos. Nada além disso.]]</h2>
+      <p>Do que mais faz o site ser desta marca ao que menos faz. Antes de criar qualquer efeito novo, a pergunta é: isso já não é um destes?</p>
     </div>
     <div class="tabela"><table>
       <thead><tr><th>Gesto</th><th>De onde vem</th><th>Como é</th><th>Onde entra</th><th>Limite</th><th>No celular</th></tr></thead>
       <tbody>
-        <tr><td>[[O nome]]</td><td>[[O ativo da marca]]</td><td>[[O que acontece]]</td><td>[[Quais componentes]]</td><td>[[Até onde]]</td><td>[[A resposta ao toque]]</td></tr>
-        <tr><td>[[O gesto da seção-assinatura]]</td><td>[[...]]</td><td>[[...]]</td><td>[[Uma seção]]</td><td>[[...]]</td><td>[[...]]</td></tr>
-        <tr><td>[[O texto de abertura]]</td><td>[[...]]</td><td>[[Como o título chega]]</td><td>[[Título de abertura]]</td><td>[[Uma vez por página]]</td><td>[[...]]</td></tr>
+        <tr><td>[[O que a rolagem faz, se o mundo pedir]]</td><td>[[A camada do mundo]]</td><td>[[O que acontece]]</td><td>[[A página, ou uma seção]]</td><td>[[Até onde; a versão empilhada]]</td><td>[[...]]</td></tr>
+        <tr><td>[[Como o protagonista se comporta]]</td><td>[[...]]</td><td>[[...]]</td><td>[[Uma seção]]</td><td>[[...]]</td><td>[[...]]</td></tr>
+        <tr><td>[[Como o conteúdo chega]]</td><td>[[...]]</td><td>[[Como o título e os blocos entram]]</td><td>[[Título de abertura, blocos]]</td><td>[[Uma vez por página]]</td><td>[[...]]</td></tr>
+        <tr><td>[[A resposta dos controles]]</td><td>[[...]]</td><td>[[Pode ser só uma troca de tom]]</td><td>[[Todos os botões, links, abas e campos]]</td><td>[[...]]</td><td>[[A resposta ao toque]]</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -304,7 +331,7 @@ td:first-child { font-family: var(--titulo); font-size: 19px; }
       <h2 class="t-titulo">[[Poucas perguntas que mudam a direção.]]</h2>
     </div>
     <ol class="pedidos">
-      <li><div><h3 class="t-sub">[[A ideia é a identidade da marca?]]</h3><p>[[Se algo incomodar, dizer o quê. A resposta vira regra em cada componente.]]</p></div></li>
+      <li><div><h3 class="t-sub">[[Este é o lugar da marca?]]</h3><p>[[Olhando o mundo em tela cheia, antes das peças. Se algo incomodar, dizer o quê. A resposta vira regra na página inteira e em cada componente.]]</p></div></li>
     </ol>
   </section>
 </main>
